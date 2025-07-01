@@ -1,0 +1,19 @@
+---
+title: "02: BERT"
+---
+
+For a demonstration of a line plot on a polar axis, see @eq-hello
+
+```python
+#| label: fig-polar
+#| fig-cap: "A line plot on a polar axis"
+
+print("Hello,m World!")
+```
+
+$$
+\mathcal{H} = \mathcal{W} \cdot \mathcal{O}
+$$ {#eq-hello}
+
+This is the figure see, figure @fig-polar
+$$

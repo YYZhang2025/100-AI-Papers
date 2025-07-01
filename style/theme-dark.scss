@@ -1,0 +1,64 @@
+/*-- scss:defaults --*/
+
+// @import "https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap";
+
+// $font-family: "Atkinson Hyperlegible", sans-serif;
+
+// Base document colors
+$body-bg: #1d1e20;
+$body-color: #faf4fc;
+$link-color: #c9a2ff;
+
+$light: #525252;
+
+// Navigation element colors
+$footer-bg: #1d1e20;
+$navbar-bg: #303030;
+$sidebar-bg: #303030;
+
+// Code blocks
+$code-block-bg-alpha: -0.8;
+
+// Bootstrap popovers
+$popover-bg: #242424;
+
+// Bootstrap inputs
+$input-bg: #242424;
+
+/*-- scss:rules --*/
+
+.layout-example {
+  background: $gray-700;
+}
+
+.render-commit-push {
+  padding: 0.5em 0.5em 0em 3em;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background: #181818 5px center/3em no-repeat;
+  border-top: 1px solid #adadad;
+  border-bottom: 1px solid #adadad;
+  background-size: 2em;
+  background-position: 0.5em 0.5em;
+}
+
+.pull {
+  padding: 0.5em 0.5em 0em 3em;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background: #181818 5px center/3em no-repeat;
+  border-top: 1px solid #adadad;
+  border-bottom: 1px solid #adadad;
+  background-size: 2em;
+  background-position: 0.5em 0.5em;
+}
+
+// 强调（调整为更统一的粉蓝调）
+strong {
+  color: #f27d8a !important; // 柔和珊瑚红（比 #da6373 更清新）
+  font-weight: bolder;
+}
+
+em {
+  color: #f2b6c1 !important; // 粉白淡化，和 strong 区分但风格统一
+}

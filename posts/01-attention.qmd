@@ -1,0 +1,39 @@
+---
+title: "01: Attention is all you need"
+author: "Yuyang Zhang"
+reading_time: 5
+---
+
+For a demonstration of a line plot on a polar axis
+
+![image-20250701223807429](01-attention.assets/image-20250701223807429.png)
+
+## Preliminary
+
+### Dot Product Similarity（点积相似度）
+
+给定两个向量 $\mathbf{q}, \mathbf{k} \in \mathbb{R}^d$
+
+它们的点积为:
+
+$$
+\text{score} = \mathbf{q} \cdot \mathbf{k} = \sum_{i=1}^{d} q_i k_i
+$$ {#eq-dot-product}
+
+- 测量两个向量的**相似度**, 数值越大，说明两个向量越相似
+- 在 Self-Attention 中，用来衡量“当前词对其他词的关注程度”
+
+### Softmax 函数
+
+给定向量 $\mathbf{x} = (x_1, x_2, \ldots, x_n)$，Softmax 函数定义为:
+$$
+\text{Softmax}(x_i) = \frac{e^{x_i}}{\sum_j e^{x_j}}
+$$ {#eq-softmax}
+
+
+- 将注意力“得分（dot product）”转换为概率分布
+- 每个词对其他词的注意力权重 $\alpha_{ij} \in [0, 1]$
+
+![The Transformer Family Version 2.0 | Lil'Log](01-attention.assets/transformer.png)
+
+This is the figure see, figure @eq-softmax

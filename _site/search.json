@@ -1,0 +1,45 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "100 Papers with Code",
+    "section": "",
+    "text": "This page contains an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses, with all changes documented here.\n\n\n\n\n\n\n\n\n\n\n\n\nNumber\nPaper Name\nDescription\nPaper Link\nCode\nCategory\n\n\n\n\n01\nAttention is All You Need\nTransformer-based model for sequence modeling\n🔗\n\nNLP / Transformer\n\n\n02\nBERT\nBidirectional encoder for pre-training NLP tasks\n🔗\n\nNLP / Pretraining\n\n\n03\nGPT-3\nGenerative transformer for autoregressive tasks\n🔗\n\nNLP / Generation\n\n\n04\nCLIP\nContrastive Language-Image Pretraining\n🔗\n\nVision / Multimodal\n\n\n05\nViT\nVision Transformer for image classification\n🔗\n\nVision / Transformer",
+    "crumbs": [
+      "About"
+    ]
+  },
+  {
+    "objectID": "posts/01-attention.html",
+    "href": "posts/01-attention.html",
+    "title": "01: Attention is all you need",
+    "section": "",
+    "text": "For a demonstration of a line plot on a polar axis",
+    "crumbs": [
+      "100 Papers",
+      "01: Attention is all you need"
+    ]
+  },
+  {
+    "objectID": "posts/01-attention.html#preliminary",
+    "href": "posts/01-attention.html#preliminary",
+    "title": "01: Attention is all you need",
+    "section": "Preliminary",
+    "text": "Preliminary\n\nDot Product Similarity（点积相似度）\n给定两个向量 \\(\\mathbf{q}, \\mathbf{k} \\in \\mathbb{R}^d\\)\n它们的点积为:\n\\[\n\\text{score} = \\mathbf{q} \\cdot \\mathbf{k} = \\sum_{i=1}^{d} q_i k_i\n\\tag{1}\\]\n\n测量两个向量的相似度, 数值越大，说明两个向量越相似\n在 Self-Attention 中，用来衡量“当前词对其他词的关注程度”\n\n\n\nSoftmax 函数\n给定向量 \\(\\mathbf{x} = (x_1, x_2, \\ldots, x_n)\\)，Softmax 函数定义为: \\[\n\\text{Softmax}(x_i) = \\frac{e^{x_i}}{\\sum_j e^{x_j}}\n\\tag{2}\\]\n\n将注意力“得分（dot product）”转换为概率分布\n每个词对其他词的注意力权重 \\(\\alpha_{ij} \\in [0, 1]\\)\n\n\n\n\nThe Transformer Family Version 2.0 | Lil’Log\n\n\nThis is the figure see, figure Equation 2",
+    "crumbs": [
+      "100 Papers",
+      "01: Attention is all you need"
+    ]
+  },
+  {
+    "objectID": "posts/02-bert.html",
+    "href": "posts/02-bert.html",
+    "title": "02: BERT",
+    "section": "",
+    "text": "For a demonstration of a line plot on a polar axis, see Equation 1\n#| label: fig-polar\n#| fig-cap: \"A line plot on a polar axis\"\n\nprint(\"Hello,m World!\")\n\\[\n\\mathcal{H} = \\mathcal{W} \\cdot \\mathcal{O}\n\\tag{1}\\]\nThis is the figure see, figure ?@fig-polar $$",
+    "crumbs": [
+      "100 Papers",
+      "02: BERT"
+    ]
+  }
+]

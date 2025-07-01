@@ -1,0 +1,59 @@
+project:
+  type: website
+
+website:
+  open-graph: true
+  page-navigation: true
+  title: "100 Papers with Codes"
+  sidebar:
+    background: "#D9E3E4"
+    logo: "./images/logo.png"
+    favicon: "./images/icon.avif"
+    pinned: true
+    align: center
+    tools:
+      - icon: globe
+        href: https://yyzhang2000.github.io/Blog/
+      - icon: github
+        href: https://github.com/YYZhang2025
+      - icon: linkedin
+        href: https://www.linkedin.com/in/zhang-yuyang/
+      - icon: envelope
+        href: mailto:zhangyuyang1211@gmail.com
+    style: "docked"
+    collapse-level: 2
+    search: true
+    contents:
+      - text: "About"
+        href: index.qmd
+      - section: "100 Papers"
+        contents: "posts/*"
+
+  page-footer:
+    right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
+    left: "&copy; CC-By Yuyang, 2025"
+    background: "#D9E3E4"
+
+format:
+  html:
+    theme:
+      light: [cosmo, ./style/theme.scss]
+      dark: [cosmo, ./style/theme-dark.scss]
+    css: ./style/style.css
+
+    fontsize: 1.3em
+    code-copy: true
+    code-overflow: wrap
+    toc: true
+    toc-title: "Table of Contents"
+    toc-depth: 4
+    toc-expand: true
+    toc-location: right
+
+    header-includes: <link href="https://fonts.cdnfonts.com/css/cmu-sans-serif" rel="stylesheet">
+    mainfont: MyFont
+
+execute:
+  echo: true # 可选，显示代码
+  eval: false # 关键：默认不执行代码
+freeze: true

@@ -1,0 +1,11 @@
+{
+  "posts/01-attention.qmd": {
+    "01-attention.html": "4cf2ff61"
+  },
+  "posts/02-bert.qmd": {
+    "02-bert.html": "4c2ab807"
+  },
+  "index.qmd": {
+    "index.html": "aedee021"
+  }
+}
