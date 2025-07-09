@@ -44,11 +44,16 @@ format:
 
     fontsize: 1.3em
     code-copy: true
-    code-overflow: wrap
+    code-overflow: scroll
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    highlight-style: github
+    code-line-numbers: true
+
     toc: true
     toc-title: "Table of Contents"
     toc-depth: 4
-    toc-expand: true
+    toc-expand: 1
     toc-location: right
 
     header-includes: <link href="https://fonts.cdnfonts.com/css/cmu-sans-serif" rel="stylesheet">

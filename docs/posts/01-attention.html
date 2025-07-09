@@ -8,7 +8,7 @@
 
 <meta name="author" content="Yuyang Zhang">
 
-<title>01: Attention is all you need – 100 Papers with Codes</title>
+<title>01: Attention is All You Need – 100 Papers with Codes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -38,14 +73,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0348920b7671f696dc9078d39bff215e.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-fd2bf3ab71cb60598dd0372d042d8937.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-d69024a9b38337989eac45e179c9a37e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-fd2bf3ab71cb60598dd0372d042d8937.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dd2bb6fda9b94d970e5d9c4dfa0a0750.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-3ea6e30735a26d9cff0b352ca8878463.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-dd2bb6fda9b94d970e5d9c4dfa0a0750.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -106,9 +141,9 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="../style/style.css">
-<meta property="og:title" content="01: Attention is all you need – 100 Papers with Codes">
+<meta property="og:title" content="01: Attention is All You Need – 100 Papers with Codes">
 <meta property="og:description" content="">
-<meta property="og:image" content="01-attention.assets/image-20250701223807429.png">
+<meta property="og:image" content="01-attention.assets/transformer.png">
 <meta property="og:site_name" content="100 Papers with Codes">
 </head>
 
@@ -283,7 +318,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../posts/01-attention.html">100 Papers</a></li><li class="breadcrumb-item"><a href="../posts/01-attention.html">01: Attention is all you need</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../posts/01-attention.html">100 Papers</a></li><li class="breadcrumb-item"><a href="../posts/01-attention.html">01: Attention is All You Need</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -333,7 +368,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../posts/01-attention.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">01: Attention is all you need</span></a>
+ <span class="menu-text">01: Attention is All You Need</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -350,7 +385,7 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="1">
     <h2 id="toc-title">Table of Contents</h2>
    
   <ul>
@@ -359,6 +394,21 @@ window.Quarto = {
   <li><a href="#dot-product-similarity点积相似度" id="toc-dot-product-similarity点积相似度" class="nav-link" data-scroll-target="#dot-product-similarity点积相似度">Dot Product Similarity（点积相似度）</a></li>
   <li><a href="#softmax-函数" id="toc-softmax-函数" class="nav-link" data-scroll-target="#softmax-函数">Softmax 函数</a></li>
   </ul></li>
+  <li><a href="#attention-is-all-you-need" id="toc-attention-is-all-you-need" class="nav-link" data-scroll-target="#attention-is-all-you-need">Attention is All You Need</a>
+  <ul>
+  <li><a href="#位置编码" id="toc-位置编码" class="nav-link" data-scroll-target="#位置编码">位置编码</a></li>
+  </ul></li>
+  <li><a href="#pytorch-实现" id="toc-pytorch-实现" class="nav-link" data-scroll-target="#pytorch-实现">PyTorch 实现</a>
+  <ul>
+  <li><a href="#word-embedding" id="toc-word-embedding" class="nav-link" data-scroll-target="#word-embedding">Word Embedding</a></li>
+  <li><a href="#position-embedding" id="toc-position-embedding" class="nav-link" data-scroll-target="#position-embedding">Position Embedding</a></li>
+  <li><a href="#feed-forward-network" id="toc-feed-forward-network" class="nav-link" data-scroll-target="#feed-forward-network">Feed Forward Network</a></li>
+  <li><a href="#layer-normalization" id="toc-layer-normalization" class="nav-link" data-scroll-target="#layer-normalization">Layer Normalization</a></li>
+  <li><a href="#multi-head-attention" id="toc-multi-head-attention" class="nav-link" data-scroll-target="#multi-head-attention">Multi Head Attention</a></li>
+  <li><a href="#encoder-block" id="toc-encoder-block" class="nav-link" data-scroll-target="#encoder-block">Encoder Block</a></li>
+  <li><a href="#decoder-block" id="toc-decoder-block" class="nav-link" data-scroll-target="#decoder-block">Decoder Block</a></li>
+  </ul></li>
+  <li><a href="#扩展" id="toc-扩展" class="nav-link" data-scroll-target="#扩展">扩展</a></li>
   </ul>
 </nav>
     </div>
@@ -366,9 +416,9 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../posts/01-attention.html">100 Papers</a></li><li class="breadcrumb-item"><a href="../posts/01-attention.html">01: Attention is all you need</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../posts/01-attention.html">100 Papers</a></li><li class="breadcrumb-item"><a href="../posts/01-attention.html">01: Attention is All You Need</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">01: Attention is all you need</h1>
+<h1 class="title">01: Attention is All You Need</h1>
 </div>
 
 
@@ -391,20 +441,11 @@ window.Quarto = {
 </header>
 
 
-<p>For a demonstration of a line plot on a polar axis</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-attention.assets/image-20250701223807429.png" class="img-fluid figure-img"></p>
-<figcaption>image-20250701223807429</figcaption>
-</figure>
-</div>
 <section id="preliminary" class="level2">
 <h2 class="anchored" data-anchor-id="preliminary">Preliminary</h2>
 <section id="dot-product-similarity点积相似度" class="level3">
 <h3 class="anchored" data-anchor-id="dot-product-similarity点积相似度">Dot Product Similarity（点积相似度）</h3>
-<p>给定两个向量 <span class="math inline">\(\mathbf{q}, \mathbf{k} \in \mathbb{R}^d\)</span></p>
-<p>它们的点积为:</p>
-<p><span id="eq-dot-product"><span class="math display">\[
+<p>给定两个向量 <span class="math inline">\(\mathbf{q}, \mathbf{k} \in \mathbb{R}^d\)</span>, 它们的点积为: <span id="eq-dot-product"><span class="math display">\[
 \text{score} = \mathbf{q} \cdot \mathbf{k} = \sum_{i=1}^{d} q_i k_i
 \tag{1}\]</span></span></p>
 <ul>
@@ -421,16 +462,171 @@ window.Quarto = {
 <li>将注意力“得分（dot product）”转换为概率分布</li>
 <li>每个词对其他词的注意力权重 <span class="math inline">\(\alpha_{ij} \in [0, 1]\)</span></li>
 </ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="01-attention.assets/transformer.png" class="img-fluid figure-img"></p>
-<figcaption>The Transformer Family Version 2.0 | Lil’Log</figcaption>
+</section>
+</section>
+<section id="attention-is-all-you-need" class="level2">
+<h2 class="anchored" data-anchor-id="attention-is-all-you-need">Attention is All You Need</h2>
+<div id="fig-transformer-architecture" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-transformer-architecture-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-attention.assets/transformer.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-transformer-architecture-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: The Transformer Family Version 2.0 | Lil’Log
+</figcaption>
 </figure>
 </div>
-<p>This is the figure see, figure <a href="#eq-softmax" class="quarto-xref">Equation&nbsp;2</a></p>
-
-
+<p>如图 <a href="#fig-transformer-architecture" class="quarto-xref">Figure&nbsp;1</a> 所示，是Transformer的整体架构。从</p>
+<section id="位置编码" class="level3">
+<h3 class="anchored" data-anchor-id="位置编码">位置编码</h3>
+<p>Transformer的输入是一个序列，序列中的每个词都被转换为一个向量。为了让模型能够理解词语在序列中的位置，我们需要添加位置编码（Position Encoding）。位置编码可以是固定的，也可以是可学习的。 在Transformer中，位置编码是通过正弦和余弦函数来实现的：具体来说，对于序列中的第 <span class="math inline">\(i\)</span> 个位置，位置编码的第 <span class="math inline">\(j\)</span> 维可以表示为： <span id="eq-position-encoding"><span class="math display">\[
+\text{PE}(i, j) =
+\begin{cases}
+\sin\left(\frac{i}{10000^{j/d}}\right) &amp; \text{if } j \text{ is even} \\
+\cos\left(\frac{i}{10000^{(j-1)/d}}\right) &amp; \text{if } j \     \text{ is odd}
+\end{cases}
+\tag{3}\]</span></span> 其中 <span class="math inline">\(d\)</span> 是位置编码的维度。位置编码的作用是为每个词提供一个唯一的位置信息，使得模型能够捕捉到词语在序列中的相对位置关系。</p>
 </section>
+</section>
+<section id="pytorch-实现" class="level2">
+<h2 class="anchored" data-anchor-id="pytorch-实现">PyTorch 实现</h2>
+<p>接下来，我们叫利用PyTorch来实现Transformer的模型架构。我们采用Bottom-Up的方法，先实现Word Embedding， 接着是Position Embedding，接着实现我们的重点，即Multi-Head-Attention，再次之后，我们会实现 Point-Wise Feed Forward Network。最后将这几个模块组合起来，实现Transformer的Encoder 和 Decoder。准备好了吗？让我们开始吧！</p>
+<section id="word-embedding" class="level3">
+<h3 class="anchored" data-anchor-id="word-embedding">Word Embedding</h3>
+<p>Word Embedding是将词语转换为向量的过程。在PyTorch 中的实现非常简单，我们可以使用<code>nn.Embedding</code>类来实现。这个类会将每个token映射到一个<em>固定维度</em>的向量空间中。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">class</span> WordEmbedding(nn.Module):</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, config):</span>
+<span id="cb1-3"><a href="#cb1-3"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a>        <span class="va">self</span>.embedding <span class="op">=</span> nn.Embedding(config.vocab_size, config.d_model)</span>
+<span id="cb1-6"><a href="#cb1-6"></a>    </span>
+<span id="cb1-7"><a href="#cb1-7"></a>    <span class="kw">def</span> _init_weight(<span class="va">self</span>):</span>
+<span id="cb1-8"><a href="#cb1-8"></a>        nn.init.trunc_normal_(<span class="va">self</span>.embedding.weight, mean <span class="op">=</span> <span class="dv">0</span>, std<span class="op">=</span><span class="fl">0.02</span>, a<span class="op">=-</span><span class="dv">3</span>, b<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb1-9"><a href="#cb1-9"></a>    </span>
+<span id="cb1-10"><a href="#cb1-10"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb1-11"><a href="#cb1-11"></a>        <span class="cf">return</span> <span class="va">self</span>.embedding(x)    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="position-embedding" class="level3">
+<h3 class="anchored" data-anchor-id="position-embedding">Position Embedding</h3>
+<p>接下来，我们来实现Position Embedding <a href="#eq-position-encoding" class="quarto-xref">Equation&nbsp;3</a>。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">class</span> PositionEmbedding(nn.Module):</span>
+<span id="cb2-2"><a href="#cb2-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, config):</span>
+<span id="cb2-3"><a href="#cb2-3"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a>        <span class="va">self</span>.seq_len <span class="op">=</span> config.seq_len</span>
+<span id="cb2-6"><a href="#cb2-6"></a>        <span class="va">self</span>.d_model <span class="op">=</span> config.d_model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>有了Word Embedding 和 Position Embedding，我们就可以将输入的token转换为向量了。我们需要接下来需要做的就是，将这两个向量相加，得到最终的输入向量。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">class</span> InputEmbedding(nn.Module):</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, config):</span>
+<span id="cb3-3"><a href="#cb3-3"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb3-4"><a href="#cb3-4"></a></span>
+<span id="cb3-5"><a href="#cb3-5"></a>        <span class="va">self</span>.word_embedding <span class="op">=</span> WordEmbedding(config)</span>
+<span id="cb3-6"><a href="#cb3-6"></a>        <span class="va">self</span>.position_embedding <span class="op">=</span> PositionEmbedding(config)</span>
+<span id="cb3-7"><a href="#cb3-7"></a>    </span>
+<span id="cb3-8"><a href="#cb3-8"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb3-9"><a href="#cb3-9"></a>        word_emb <span class="op">=</span> <span class="va">self</span>.word_embedding(x)</span>
+<span id="cb3-10"><a href="#cb3-10"></a>        pos_emb <span class="op">=</span> <span class="va">self</span>.position_embedding(x)</span>
+<span id="cb3-11"><a href="#cb3-11"></a>        </span>
+<span id="cb3-12"><a href="#cb3-12"></a>        <span class="cf">return</span> word_emb <span class="op">+</span> pos_emb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="feed-forward-network" class="level3">
+<h3 class="anchored" data-anchor-id="feed-forward-network">Feed Forward Network</h3>
+<p>我们先跳过Multi Head Attention，先实现Feed Forward Network。Feed Forward Network是Transformer中的一个重要模块，它的作用是对每个位置的向量进行非线性变换。具体来说，Feed Forward Network由两个线性变换和一个ReLU激活函数组成。</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">class</span> FeedForwardNetwork(nn.Module):</span>
+<span id="cb4-2"><a href="#cb4-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, config):</span>
+<span id="cb4-3"><a href="#cb4-3"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb4-4"><a href="#cb4-4"></a></span>
+<span id="cb4-5"><a href="#cb4-5"></a>        <span class="va">self</span>.linear1 <span class="op">=</span> nn.Linear(config.d_model, config.d_ff)</span>
+<span id="cb4-6"><a href="#cb4-6"></a>        <span class="va">self</span>.relu <span class="op">=</span> nn.ReLU()</span>
+<span id="cb4-7"><a href="#cb4-7"></a>        <span class="va">self</span>.linear2 <span class="op">=</span> nn.Linear(config.d_ff, config.d_model)</span>
+<span id="cb4-8"><a href="#cb4-8"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb4-9"><a href="#cb4-9"></a>        <span class="cf">return</span> <span class="va">self</span>.linear2(<span class="va">self</span>.relu(<span class="va">self</span>.linear1(x)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="layer-normalization" class="level3">
+<h3 class="anchored" data-anchor-id="layer-normalization">Layer Normalization</h3>
+<p>还有一个重要的模块是Layer Normalization，它可以帮助模型更快地收敛。</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">class</span> LayerNormalization(nn.Module):</span>
+<span id="cb5-2"><a href="#cb5-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, in_features, eps<span class="op">=</span><span class="fl">1e-6</span>):</span>
+<span id="cb5-3"><a href="#cb5-3"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb5-4"><a href="#cb5-4"></a>        <span class="va">self</span>.eps <span class="op">=</span> eps</span>
+<span id="cb5-5"><a href="#cb5-5"></a>        <span class="va">self</span>.weight <span class="op">=</span> nn.Parameter(torch.ones(in_features))</span>
+<span id="cb5-6"><a href="#cb5-6"></a>        <span class="va">self</span>.bias <span class="op">=</span> nn.Parameter(torch.zeros(in_features))</span>
+<span id="cb5-7"><a href="#cb5-7"></a></span>
+<span id="cb5-8"><a href="#cb5-8"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb5-9"><a href="#cb5-9"></a>        mean <span class="op">=</span> x.mean(dim<span class="op">=-</span><span class="dv">1</span>, keepdim<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-10"><a href="#cb5-10"></a>        var <span class="op">=</span> x.var(dim<span class="op">=-</span><span class="dv">1</span>, keepdim<span class="op">=</span><span class="va">True</span>, unbiased<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-11"><a href="#cb5-11"></a>        normalized_x <span class="op">=</span> (x <span class="op">-</span> mean) <span class="op">/</span> torch.sqrt(var <span class="op">+</span> <span class="va">self</span>.eps)</span>
+<span id="cb5-12"><a href="#cb5-12"></a>        <span class="cf">return</span> <span class="va">self</span>.weight <span class="op">*</span> normalized_x <span class="op">+</span> <span class="va">self</span>.bias</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="multi-head-attention" class="level3">
+<h3 class="anchored" data-anchor-id="multi-head-attention">Multi Head Attention</h3>
+<p>Multi Head Attention是Transformer的核心模块。它的作用是将输入的向量进行多头注意力计算，从而捕捉到不同的语义信息。</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>这部分是Transformer的核心模块，理解它是理解Transformer以及他变型的关键。记得多看几遍，直到你能理解为止。</p>
+</div>
+</div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">class</span> MultiHeadAttention(nn.Module):</span>
+<span id="cb6-2"><a href="#cb6-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, config):</span>
+<span id="cb6-3"><a href="#cb6-3"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb6-4"><a href="#cb6-4"></a></span>
+<span id="cb6-5"><a href="#cb6-5"></a>        <span class="cf">assert</span> config.d_model <span class="op">%</span> config.num_heads <span class="op">==</span> <span class="dv">0</span>, <span class="st">"d_model must be divisible by num_heads"</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>        <span class="va">self</span>.head_dim <span class="op">=</span> config.d_model <span class="op">//</span> config.num_heads</span>
+<span id="cb6-7"><a href="#cb6-7"></a></span>
+<span id="cb6-8"><a href="#cb6-8"></a>        <span class="va">self</span>.qkv_proj <span class="op">=</span> nn.Linear(config.d_model, config.d_model <span class="op">*</span> <span class="dv">3</span>)</span>
+<span id="cb6-9"><a href="#cb6-9"></a>        <span class="va">self</span>.out_proj <span class="op">=</span> nn.Linear(config.d_model, config.d_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="encoder-block" class="level3">
+<h3 class="anchored" data-anchor-id="encoder-block">Encoder Block</h3>
+<p>Encoder Block是Transformer的一个重要模块，它由Multi Head Attention和Feed Forward Network组成。它的作用是对输入的向量进行编码，从而捕捉到不同的语义信息。</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">class</span> EncoderBlock(nn.Module):</span>
+<span id="cb7-2"><a href="#cb7-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, config):</span>
+<span id="cb7-3"><a href="#cb7-3"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb7-4"><a href="#cb7-4"></a></span>
+<span id="cb7-5"><a href="#cb7-5"></a>        <span class="va">self</span>.attention <span class="op">=</span> MultiHeadAttention(config)</span>
+<span id="cb7-6"><a href="#cb7-6"></a>        <span class="va">self</span>.ffn <span class="op">=</span> FeedForwardNetwork(config)</span>
+<span id="cb7-7"><a href="#cb7-7"></a>        <span class="va">self</span>.norm1 <span class="op">=</span> LayerNormalization(config.d_model)</span>
+<span id="cb7-8"><a href="#cb7-8"></a>        <span class="va">self</span>.norm2 <span class="op">=</span> LayerNormalization(config.d_model)</span>
+<span id="cb7-9"><a href="#cb7-9"></a>        <span class="va">self</span>.dropout <span class="op">=</span> nn.Dropout(config.dropout)</span>
+<span id="cb7-10"><a href="#cb7-10"></a></span>
+<span id="cb7-11"><a href="#cb7-11"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb7-12"><a href="#cb7-12"></a>        <span class="co"># Multi Head Attention</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a>        attn_output <span class="op">=</span> <span class="va">self</span>.attention(x)</span>
+<span id="cb7-14"><a href="#cb7-14"></a>        x <span class="op">=</span> <span class="va">self</span>.norm1(x <span class="op">+</span> <span class="va">self</span>.dropout(attn_output))   </span>
+<span id="cb7-15"><a href="#cb7-15"></a>        <span class="co"># Feed Forward Network</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a>        ffn_output <span class="op">=</span> <span class="va">self</span>.ffn(x)</span>
+<span id="cb7-17"><a href="#cb7-17"></a>        x <span class="op">=</span> <span class="va">self</span>.norm2(x <span class="op">+</span> <span class="va">self</span>.dropout(ffn_output))</span>
+<span id="cb7-18"><a href="#cb7-18"></a>        <span class="cf">return</span> x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="decoder-block" class="level3">
+<h3 class="anchored" data-anchor-id="decoder-block">Decoder Block</h3>
+<p>Decoder Block是Transformer的另一个重要模块，它与Encoder Block类似，但它还需要处理 Masked Multi Head Attention。Masked Multi Head Attention的作用是防止模型在训练时看到未来的信息，从而保证模型的自回归特性。</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">class</span> DecoderBlock(nn.Module):</span>
+<span id="cb8-2"><a href="#cb8-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, config):</span>
+<span id="cb8-3"><a href="#cb8-3"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()      </span>
+<span id="cb8-4"><a href="#cb8-4"></a></span>
+<span id="cb8-5"><a href="#cb8-5"></a>        <span class="va">self</span>.attention1 <span class="op">=</span> MultiHeadAttention(config)</span>
+<span id="cb8-6"><a href="#cb8-6"></a>        <span class="va">self</span>.attention2 <span class="op">=</span> MultiHeadAttention(config, is_causal<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>恭喜你，以及成功的实现了Transformer，这个是当前最重要的AI模型框架。理解了它，你就理解可以理解大部分的AI模型了。现在大火的ChatGPT，DeepSeek等模型都是基于Transformer的变型（在接下来的文章中，我们会阅读到这些模型）。完整的代码可以在<a href="">GitHub</a>上查看。</p>
+</section>
+</section>
+<section id="扩展" class="level2">
+<h2 class="anchored" data-anchor-id="扩展">扩展</h2>
+<p>自从Transformer被提出以来，已经有了很多的变型和改进。具体的来说，Attention在Transformer中需要 <span class="math inline">\(\mathcal{O}(n^2)\)</span> 的计算复杂度，这在处理长文本时会变得非常慢。因此，很多研究者提出了各种各样的改进方法来降低计算复杂度。以下是一些常见的改进方法：</p>
+<ul>
+<li><strong>Sparse Attention</strong>: 通过稀疏化注意力矩阵来降低计算复杂度。比如，Reformer模型使用了局部敏感哈希（LSH）来实现稀疏注意力。</li>
+<li><strong>Linear Attention</strong>: 通过将注意力计算转换为线性时间复杂度</li>
+</ul>
+
+
 </section>
 
 </main> <!-- /main -->
