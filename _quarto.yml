@@ -27,6 +27,8 @@ website:
     contents:
       - text: "About"
         href: index.md
+      - text: "00 Preparation for following"
+        href: "00-how-to-read-paper.qmd"
       - section: "100 Papers"
         contents: "posts/*"
 
@@ -42,7 +44,10 @@ format:
       dark: [cosmo, ./style/theme-dark.scss]
     css: ./style/style.css
 
-    fontsize: 1.3em
+    link-external-newwindow: true
+    link-external-icon: true
+
+    fontsize: 1.2em
     code-copy: true
     code-overflow: scroll
     code-block-bg: true
@@ -58,6 +63,8 @@ format:
 
     header-includes: <link href="https://fonts.cdnfonts.com/css/cmu-sans-serif" rel="stylesheet">
     mainfont: MyFont
+
+    lst-cap-location: bottom
 
 execute:
   echo: true # 可选，显示代码

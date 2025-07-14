@@ -62,3 +62,11 @@ strong {
 em {
   color: #f2b6c1 !important; // 粉白淡化，和 strong 区分但风格统一
 }
+
+.highlight-box {
+  padding: 1em;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: #2b2b2b;
+  color: #f1f1f1;
+}
