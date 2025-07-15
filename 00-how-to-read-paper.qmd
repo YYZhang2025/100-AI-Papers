@@ -85,12 +85,6 @@ Home Page of Notion and FeiShu
 - [飞书](https://www.feishu.cn/)：如 @fig-feishu 所示，功能全面，适合企业级文档管理。
 
 
-:::{#fig-video}
-{{< video https://www.youtube.com/watch?v=ykbblK2jiEg >}}
-
-The video display of Long-RL: Scaling RL to Long Videos
-:::
-
 ### 代码执行：Jupyter Notebook
 
 在“Paper with Code”理念下，每篇论文将配套 Jupyter Notebook 实现核心算法。其交互式文档特性，使其成为学习与验证代码的理想平台。
