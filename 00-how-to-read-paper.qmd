@@ -20,6 +20,7 @@ title: "00: Preparation for Following"
 为提升阅读效率，我们建议在精读阶段，使用颜色标记不同内容。例如在 [Harvard CS197 AI Research Experiences](https://docs.google.com/document/d/1uvAbEhbgS_M-uDMTzmOWRlYxqCkogKRXdbKYYT98ooc/edit?tab=t.0) 的 [Lecture 3](https://docs.google.com/document/d/1bPhwNdCCKkm1_adD0rx1YV6r2JG98qYmTxutT5gdAdQ/edit?tab=t.0#heading=h.qotknb42dmr1) 中给出的策略：
 
 - <span style="background-color: yellow;  color: inherit;">黄色</span>：突出论文所试图解决的核心问题或挑战。
+- <span style="background-color: green;  color: inherit;">绿色</span>：标记论文中的提到的通用概念。
 - <span style="background-color: pink;  color: inherit;">粉色</span>：对应提出的算法方法或技术路径。
 - <span style="background-color: orange;  color: inherit;">橙色</span>：用于标记论文的创新点与贡献。
 
@@ -82,6 +83,13 @@ Home Page of Notion and FeiShu
 
 - [Notion](https://www.notion.so/)：如 @fig-notion 所示，适合多人协作与可视化编辑。
 - [飞书](https://www.feishu.cn/)：如 @fig-feishu 所示，功能全面，适合企业级文档管理。
+
+
+:::{#fig-video}
+{{< video https://www.youtube.com/watch?v=ykbblK2jiEg >}}
+
+The video display of Long-RL: Scaling RL to Long Videos
+:::
 
 ### 代码执行：Jupyter Notebook
 
