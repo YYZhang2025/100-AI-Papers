@@ -6,10 +6,10 @@ website:
   open-graph: true
   page-navigation: true
   title: "100 Papers with Codes"
+  favicon: "./images/icon.avif"
   sidebar:
     background: "#D9E3E4"
     logo: "./images/logo.png"
-    favicon: "./images/icon.avif"
     pinned: true
     align: center
     tools:
@@ -65,6 +65,8 @@ format:
     mainfont: MyFont
 
     lst-cap-location: bottom
+
+    number-sections: true
 
 execute:
   echo: true # 可选，显示代码

@@ -31,6 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="./">
 <link href="./posts/01-attention.html" rel="next">
 <link href="./index.html" rel="prev">
+<link href="././images/icon.avif" rel="icon">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -312,12 +313,6 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">01: Attention is All You Need</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/02-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">02: BERT</span></a>
-  </div>
-</li>
       </ul>
   </li>
     </ul>
@@ -330,15 +325,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of Contents</h2>
    
   <ul>
-  <li><a href="#论文阅读指南" id="toc-论文阅读指南" class="nav-link active" data-scroll-target="#论文阅读指南">论文阅读指南</a></li>
-  <li><a href="#工具准备" id="toc-工具准备" class="nav-link" data-scroll-target="#工具准备">工具准备</a>
+  <li><a href="#论文阅读指南" id="toc-论文阅读指南" class="nav-link active" data-scroll-target="#论文阅读指南"><span class="header-section-number">1</span> 论文阅读指南</a></li>
+  <li><a href="#工具准备" id="toc-工具准备" class="nav-link" data-scroll-target="#工具准备"><span class="header-section-number">2</span> 工具准备</a>
   <ul>
-  <li><a href="#sec-zotero" id="toc-sec-zotero" class="nav-link" data-scroll-target="#sec-zotero">文献管理：Zotero</a></li>
-  <li><a href="#sec-obsidian" id="toc-sec-obsidian" class="nav-link" data-scroll-target="#sec-obsidian">笔记记录：Obsidian</a></li>
-  <li><a href="#代码执行jupyter-notebook" id="toc-代码执行jupyter-notebook" class="nav-link" data-scroll-target="#代码执行jupyter-notebook">代码执行：Jupyter Notebook</a></li>
-  <li><a href="#gpu-平台云端执行环境" id="toc-gpu-平台云端执行环境" class="nav-link" data-scroll-target="#gpu-平台云端执行环境">GPU 平台：云端执行环境</a></li>
+  <li><a href="#sec-zotero" id="toc-sec-zotero" class="nav-link" data-scroll-target="#sec-zotero"><span class="header-section-number">2.1</span> 文献管理：Zotero</a></li>
+  <li><a href="#sec-obsidian" id="toc-sec-obsidian" class="nav-link" data-scroll-target="#sec-obsidian"><span class="header-section-number">2.2</span> 笔记记录：Obsidian</a></li>
+  <li><a href="#代码执行jupyter-notebook" id="toc-代码执行jupyter-notebook" class="nav-link" data-scroll-target="#代码执行jupyter-notebook"><span class="header-section-number">2.3</span> 代码执行：Jupyter Notebook</a></li>
+  <li><a href="#gpu-平台云端执行环境" id="toc-gpu-平台云端执行环境" class="nav-link" data-scroll-target="#gpu-平台云端执行环境"><span class="header-section-number">2.4</span> GPU 平台：云端执行环境</a></li>
   </ul></li>
-  <li><a href="#总结" id="toc-总结" class="nav-link" data-scroll-target="#总结">总结</a></li>
+  <li><a href="#总结" id="toc-总结" class="nav-link" data-scroll-target="#总结"><span class="header-section-number">3</span> 总结</a></li>
   </ul>
 </nav>
     </div>
@@ -365,8 +360,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="论文阅读指南" class="level2">
-<h2 class="anchored" data-anchor-id="论文阅读指南">论文阅读指南</h2>
+<section id="论文阅读指南" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="论文阅读指南"><span class="header-section-number">1</span> 论文阅读指南</h2>
 <p>在深入学习人工智能相关论文之前，掌握高效且系统的阅读方法至关重要。论文阅读经典指南 <a href="https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf">How to Read a Paper</a> 中提出了“三遍阅读法”，为我们提供了清晰的实践路径：</p>
 <div id="lst-three-readings" class="highlight-box listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
@@ -403,11 +398,11 @@ Figure&nbsp;1: Highlight Example of paper (Attention is all you need)
 </div>
 <p>这套方法并非唯一标准，关键在于构建一套适合自身认知方式的可视化标记体系。统一的标注风格，有助于在后期回顾或跨论文比较时高效定位关键信息。本项目所收录的每篇论文笔记也将采用这一结构化高亮标记方法。</p>
 </section>
-<section id="工具准备" class="level2">
-<h2 class="anchored" data-anchor-id="工具准备">工具准备</h2>
+<section id="工具准备" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="工具准备"><span class="header-section-number">2</span> 工具准备</h2>
 <p>科学阅读离不开合适的工具支撑。以下是推荐的工具体系，涵盖文献管理、笔记整理、代码执行等多个维度。</p>
-<section id="sec-zotero" class="level3">
-<h3 class="anchored" data-anchor-id="sec-zotero">文献管理：Zotero</h3>
+<section id="sec-zotero" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="sec-zotero"><span class="header-section-number">2.1</span> 文献管理：Zotero</h3>
 <p>随着论文积累的增多，系统的文献管理工具不可或缺。<a href="https://www.zotero.org/">Zotero</a> 是一款免费且开源的文献管理平台，支持自动导入、分组管理与多格式引用（如 BibTeX）。其可扩展性极强，支持插件与主题定制。</p>
 <div id="fig-zotero-example" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -438,8 +433,8 @@ Figure&nbsp;3: Zotero Chrome Connector
 </div>
 <p>如 <a href="#fig-zotero-chrome" class="quarto-xref">Figure&nbsp;3</a> 所示，只需点击插件按钮，即可将当前网页内容导入至文献库。</p>
 </section>
-<section id="sec-obsidian" class="level3">
-<h3 class="anchored" data-anchor-id="sec-obsidian">笔记记录：Obsidian</h3>
+<section id="sec-obsidian" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="sec-obsidian"><span class="header-section-number">2.2</span> 笔记记录：Obsidian</h3>
 <p><a href="https://obsidian.md/">Obsidian</a> 是一款基于 Markdown 的笔记系统，支持<em>双向链接</em>与<em>图谱视图</em>，特别适合用于构建个人知识体系。</p>
 <div id="fig-obsidan-example" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -499,8 +494,8 @@ Figure&nbsp;5: Home Page of Notion and FeiShu
 <li><a href="https://www.feishu.cn/">飞书</a>：如 <a href="#fig-feishu" class="quarto-xref">Figure&nbsp;5 (b)</a> 所示，功能全面，适合企业级文档管理。</li>
 </ul>
 </section>
-<section id="代码执行jupyter-notebook" class="level3">
-<h3 class="anchored" data-anchor-id="代码执行jupyter-notebook">代码执行：Jupyter Notebook</h3>
+<section id="代码执行jupyter-notebook" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="代码执行jupyter-notebook"><span class="header-section-number">2.3</span> 代码执行：Jupyter Notebook</h3>
 <p>在“Paper with Code”理念下，每篇论文将配套 Jupyter Notebook 实现核心算法。其交互式文档特性，使其成为学习与验证代码的理想平台。</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -527,8 +522,8 @@ Figure&nbsp;6: The preview of GitHub Page
 </figure>
 </div>
 </section>
-<section id="gpu-平台云端执行环境" class="level3">
-<h3 class="anchored" data-anchor-id="gpu-平台云端执行环境">GPU 平台：云端执行环境</h3>
+<section id="gpu-平台云端执行环境" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="gpu-平台云端执行环境"><span class="header-section-number">2.4</span> GPU 平台：云端执行环境</h3>
 <p>深度学习模型常需 GPU 加速，若本地无 GPU 可使用以下平台：</p>
 <ul>
 <li><a href="https://colab.research.google.com/">Google Colab</a>：Google 提供的免费云端 Notebook 平台，支持 GPU 与 TPU。</li>
@@ -546,8 +541,8 @@ Figure&nbsp;6: The preview of GitHub Page
 <p>通过合理配置上述工具，可以构建出一个系统化、高效的论文学习与研究流程。在接下来的章节中，每篇论文将附带代码实现、结构解析与批判性思考，欢迎共同学习交流。</p>
 </section>
 </section>
-<section id="总结" class="level2">
-<h2 class="anchored" data-anchor-id="总结">总结</h2>
+<section id="总结" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="总结"><span class="header-section-number">3</span> 总结</h2>
 <p>在本节中，我们介绍了高效阅读论文的方法论与工具体系。通过“三遍阅读法” <a href="#lst-three-readings" class="quarto-xref">Listing&nbsp;1</a>， 我们可以系统地理解论文内容，并在此基础上进行批判性思考。同时，借助 Zotero <a href="#sec-zotero" class="quarto-xref">Section&nbsp;2.1</a>、Obsidian<a href="#sec-obsidian" class="quarto-xref">Section&nbsp;2.2</a> 等工具，可以有效管理文献、记录笔记与执行代码。 在后续章节中，我们将应用这些方法与工具，深入分析每篇论文的核心思想、实验设计与创新贡献。希望通过本项目的学习，能够帮助大家更好地掌握人工智能领域的前沿研究动态，并在实践中不断提升自己的科研能力。</p>
 
 
