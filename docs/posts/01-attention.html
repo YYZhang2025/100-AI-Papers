@@ -109,6 +109,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <link href="https://fonts.cdnfonts.com/css/cmu-sans-serif" rel="stylesheet">
+<style>
+div.callout-thumbs-up.callout {
+  border-left-color: #008000;
+}
+div.callout-thumbs-up.callout-style-default > .callout-header {
+  background-color: rgba(0, 128, 0, 0.13);
+}
+div.callout-thumbs-up .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-thumbs-up.callout-style-default .callout-icon::before, div.callout-thumbs-up.callout-titled .callout-icon::before {
+  font-family: 'Font Awesome 6 Free', FontAwesome;
+  font-style: normal;
+  content: '\f164' !important;
+  background-image: none;
+}
+div.callout-QA.callout {
+  border-left-color: #e7f3ff;
+}
+div.callout-QA.callout-style-default > .callout-header {
+  background-color: rgba(231, 243, 255, 0.13);
+}
+div.callout-QA .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-QA.callout-style-default .callout-icon::before, div.callout-QA.callout-titled .callout-icon::before {
+  content: '🗨️';
+  background-image: none;
+}
+</style>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -396,24 +422,35 @@ window.Quarto = {
   </ul></li>
   <li><a href="#attention-is-all-you-need" id="toc-attention-is-all-you-need" class="nav-link" data-scroll-target="#attention-is-all-you-need"><span class="header-section-number">2</span> Attention is All You Need</a>
   <ul>
-  <li><a href="#位置编码" id="toc-位置编码" class="nav-link" data-scroll-target="#位置编码"><span class="header-section-number">2.1</span> 位置编码</a></li>
+  <li><a href="#input-embedding" id="toc-input-embedding" class="nav-link" data-scroll-target="#input-embedding"><span class="header-section-number">2.1</span> Input Embedding</a></li>
+  <li><a href="#positional-encoding" id="toc-positional-encoding" class="nav-link" data-scroll-target="#positional-encoding"><span class="header-section-number">2.2</span> Positional Encoding</a></li>
+  <li><a href="#multi-head-attention" id="toc-multi-head-attention" class="nav-link" data-scroll-target="#multi-head-attention"><span class="header-section-number">2.3</span> Multi-Head Attention</a></li>
+  <li><a href="#causal-attention" id="toc-causal-attention" class="nav-link" data-scroll-target="#causal-attention"><span class="header-section-number">2.4</span> Causal Attention</a></li>
+  <li><a href="#cross-attention" id="toc-cross-attention" class="nav-link" data-scroll-target="#cross-attention"><span class="header-section-number">2.5</span> Cross Attention</a></li>
+  <li><a href="#layer-normalization" id="toc-layer-normalization" class="nav-link" data-scroll-target="#layer-normalization"><span class="header-section-number">2.6</span> Layer Normalization</a></li>
+  <li><a href="#residual-connection" id="toc-residual-connection" class="nav-link" data-scroll-target="#residual-connection"><span class="header-section-number">2.7</span> Residual Connection</a></li>
+  <li><a href="#point-wise-feed-forward-network" id="toc-point-wise-feed-forward-network" class="nav-link" data-scroll-target="#point-wise-feed-forward-network"><span class="header-section-number">2.8</span> Point-Wise Feed Forward Network</a></li>
+  <li><a href="#output-linear-projection-softmax" id="toc-output-linear-projection-softmax" class="nav-link" data-scroll-target="#output-linear-projection-softmax"><span class="header-section-number">2.9</span> Output Linear Projection &amp; Softmax</a></li>
+  <li><a href="#full-process" id="toc-full-process" class="nav-link" data-scroll-target="#full-process"><span class="header-section-number">2.10</span> Full Process</a></li>
+  <li><a href="#training-process" id="toc-training-process" class="nav-link" data-scroll-target="#training-process"><span class="header-section-number">2.11</span> Training Process</a></li>
   </ul></li>
   <li><a href="#pytorch-实现" id="toc-pytorch-实现" class="nav-link" data-scroll-target="#pytorch-实现"><span class="header-section-number">3</span> PyTorch 实现</a>
   <ul>
   <li><a href="#word-embedding" id="toc-word-embedding" class="nav-link" data-scroll-target="#word-embedding"><span class="header-section-number">3.1</span> Word Embedding</a></li>
   <li><a href="#position-embedding" id="toc-position-embedding" class="nav-link" data-scroll-target="#position-embedding"><span class="header-section-number">3.2</span> Position Embedding</a></li>
   <li><a href="#feed-forward-network" id="toc-feed-forward-network" class="nav-link" data-scroll-target="#feed-forward-network"><span class="header-section-number">3.3</span> Feed Forward Network</a></li>
-  <li><a href="#layer-normalization" id="toc-layer-normalization" class="nav-link" data-scroll-target="#layer-normalization"><span class="header-section-number">3.4</span> Layer Normalization</a></li>
-  <li><a href="#multi-head-attention" id="toc-multi-head-attention" class="nav-link" data-scroll-target="#multi-head-attention"><span class="header-section-number">3.5</span> Multi Head Attention</a></li>
+  <li><a href="#layer-normalization-1" id="toc-layer-normalization-1" class="nav-link" data-scroll-target="#layer-normalization-1"><span class="header-section-number">3.4</span> Layer Normalization</a></li>
+  <li><a href="#multi-head-attention-1" id="toc-multi-head-attention-1" class="nav-link" data-scroll-target="#multi-head-attention-1"><span class="header-section-number">3.5</span> Multi Head Attention</a></li>
   <li><a href="#encoder-block" id="toc-encoder-block" class="nav-link" data-scroll-target="#encoder-block"><span class="header-section-number">3.6</span> Encoder Block</a></li>
   <li><a href="#decoder-block" id="toc-decoder-block" class="nav-link" data-scroll-target="#decoder-block"><span class="header-section-number">3.7</span> Decoder Block</a></li>
   </ul></li>
   <li><a href="#扩展" id="toc-扩展" class="nav-link" data-scroll-target="#扩展"><span class="header-section-number">4</span> 扩展</a></li>
+  <li><a href="#qa" id="toc-qa" class="nav-link" data-scroll-target="#qa"><span class="header-section-number">5</span> Q&amp;A</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../posts/01-attention.html">100 Papers</a></li><li class="breadcrumb-item"><a href="../posts/01-attention.html">01: Attention is All You Need</a></li></ol></nav>
@@ -464,8 +501,13 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="attention-is-all-you-need" class="level2" data-number="2">
+<section id="attention-is-all-you-need" class="level2 page-columns page-full" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="attention-is-all-you-need"><span class="header-section-number">2</span> Attention is All You Need</h2>
+<blockquote class="blockquote">
+<p>“The dominant sequence transduction models are based on complex recurrent or convolutional neural networks … We propose a new simple network architecture, the Transformer, based <strong>solely on attention mechanisms</strong>, dispensing with recurrence and convolutions entirely.”</p>
+</blockquote>
+<p>本篇论文提出：序列建模（Sequence Modeling）长期依赖 RNN/CNN，其计算受制于<u>时间步骤的串行性</u>，难以并行化，且<u>长距离依赖捕获效率低</u>。 为了解决这个问题，作者提出了Transformer模型，完全基于<u>注意力机制</u>，去除了循环和卷积操作，从而实现了<u>全局信息交互</u>。利用多头注意力机制（Multi-Head Attention）+ 前馈网络 （Feed Forward Network）编码器-解码器均去除了循环/卷积，仅靠注意力实现全局信息交互。 除此之外，他们还设计了Scaled Dot-Product Attention 和 Multi Head Attention，来<strong>降低数值尺度</strong>的同时并行<strong>学习多子空间表示</strong>。</p>
+<p>以下是Transformer的整体架构图：</p>
 <div id="fig-transformer-architecture" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-transformer-architecture-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -476,16 +518,196 @@ Figure&nbsp;1: The Transformer Family Version 2.0 | Lil’Log
 </figcaption>
 </figure>
 </div>
-<p>如图 <a href="#fig-transformer-architecture" class="quarto-xref">Figure&nbsp;1</a> 所示，是Transformer的整体架构。从</p>
-<section id="位置编码" class="level3" data-number="2.1">
-<h3 data-number="2.1" class="anchored" data-anchor-id="位置编码"><span class="header-section-number">2.1</span> 位置编码</h3>
-<p>Transformer的输入是一个序列，序列中的每个词都被转换为一个向量。为了让模型能够理解词语在序列中的位置，我们需要添加位置编码（Position Encoding）。位置编码可以是固定的，也可以是可学习的。 在Transformer中，位置编码是通过正弦和余弦函数来实现的：具体来说，对于序列中的第 <span class="math inline">\(i\)</span> 个位置，位置编码的第 <span class="math inline">\(j\)</span> 维可以表示为： <span id="eq-position-encoding"><span class="math display">\[
-\text{PE}(i, j) =
-\begin{cases}
-\sin\left(\frac{i}{10000^{j/d}}\right) &amp; \text{if } j \text{ is even} \\
-\cos\left(\frac{i}{10000^{(j-1)/d}}\right) &amp; \text{if } j \     \text{ is odd}
-\end{cases}
-\tag{3}\]</span></span> 其中 <span class="math inline">\(d\)</span> 是位置编码的维度。位置编码的作用是为每个词提供一个唯一的位置信息，使得模型能够捕捉到词语在序列中的相对位置关系。</p>
+<p>如图 <a href="#fig-transformer-architecture" class="quarto-xref">Figure&nbsp;1</a> 所示，Transformer是由：</p>
+<ul>
+<li>Input Embedding</li>
+<li>Position Embedding</li>
+<li>Multi-Head Attention</li>
+<li>Point-Wise Feed Forward Network</li>
+<li>Layer Normalization</li>
+</ul>
+<p>这几个小模块来组成的，每个小模块组成一个Encoder Block，多个Encoder Block堆叠起来形成Encoder，Decoder Block也是类似的。接下来，我们会逐个介绍这些模块。</p>
+<section id="input-embedding" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="input-embedding"><span class="header-section-number">2.1</span> Input Embedding</h3>
+<p>Input Embedding是将输入的token转换为向量的过程。Transformer的输入是一个序列，序列中的每个词都被转换为一个向量。<em>这个向量可以是预训练的词向量，也可以是随机初始化的向量</em>。Transformer使用Word Embedding来将每个token转换为一个固定维度的向量。这在自然语言处理（NLP）中是一个常见的做法。</p>
+</section>
+<section id="positional-encoding" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="positional-encoding"><span class="header-section-number">2.2</span> Positional Encoding</h3>
+<p>Transformer 的另一个重要特点是它不使用循环神经网络（RNN）或卷积神经网络（CNN）来处理序列数据。这就导致了一个问题：Transformer无法捕捉到序列中词语的位置信息。为了解决这个问题，Transformer引入了位置编码（Position Encoding）。</p>
+<blockquote class="blockquote">
+<p>Since our model contains no recurrence and no convolution, in order for the model to make use of the order of the sequence, we must inject some information about the relative or absolute position of the tokens in the sequence.</p>
+</blockquote>
+<p>位置编码是一个向量，它为每个词提供了一个唯一的位置信息。<strong>位置编码的维度与词向量的维度相同</strong>。Transformer使用位置编码来为<em>每个词提供一个唯一的位置信息</em>，从而使得模型能够捕捉到词语在序列中的相对位置关系。</p>
+<p>在Transformer中，位置编码是通过正弦和余弦函数来实现的：具体来说，对于序列中的第 <span class="math inline">\(pos\)</span> 个位置，位置编码的第 <span class="math inline">\(i\)</span> 维可以表示为： <span id="eq-position-encoding"><span class="math display">\[
+\begin{align}
+\mathrm{PE}(pos,2i)=\sin\!\bigl(pos \times \tfrac{1}{10000^{2i/d_\mathrm{model}}}\bigr) \\
+\mathrm{PE}(pos,2i{+}1)=\cos\!\bigl(pos \times \tfrac{1}{10000^{2i/d_\mathrm{model}}}\bigr)
+\end{align}
+\tag{3}\]</span></span></p>
+<p>其中 <span class="math inline">\(d_{\text{model}}\)</span> 是位置编码的维度（与Word Embedding 的维度一样大）。位置编码的作用是为每个词提供一个唯一的位置信息，使得模型能够捕捉到词语在序列中的相对位置关系。</p>
+</section>
+<section id="multi-head-attention" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="multi-head-attention"><span class="header-section-number">2.3</span> Multi-Head Attention</h3>
+<p>Multi-Head Attention是Transformer的核心模块。它的作用是将输入的向量进行多头注意力计算，从而捕捉到不同的语义信息。Attention 其实就是一个<strong>加权求和</strong>的过程，它可以看作是对输入向量的加权平均。其核心公式为： <span id="eq-attention"><span class="math display">\[
+\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+\tag{4}\]</span></span></p>
+<p>其中 <span class="math inline">\(Q\)</span>、<span class="math inline">\(K\)</span>、<span class="math inline">\(V\)</span> 分别是查询（Query）、键（Key）和值（Value）矩阵，其中 <span class="math inline">\(\sqrt{d_k}\)</span> 是一个缩放因子，用来防止点积的值过大导致梯度消失。这个公式的含义是：首先计算查询和键的点积，然后通过Softmax函数将其转换为概率分布，最后用这个概率分布对值进行加权求和。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="#eq-attention" class="quarto-xref">Equation&nbsp;4</a> 是Attention的核心公式，它是Transformer的核心模块。理解这个公式是理解Transformer的关键。后续很多的创新和变体都是在这个公式的基础上进行的。</p>
+</div>
+</div>
+<p>Multi-Head Attention 是Attention@eq-attention 的一个扩展，它将输入的向量分成多个子空间（head），然后在每个子空间上独立地计算注意力。最后，将所有子空间的输出拼接起来，得到最终的输出。Multi-Head Attention 的公式为： <span id="eq-multi-head-attention"><span class="math display">\[
+\begin{align*}
+\text{MultiHead}(Q, K, V) &amp;= \text{Concat}(\text{head}_1, \ldots, \text{head}_h)W^O \\
+\text{head}_i &amp;= \text{Attention}(QW_i^Q, KW_i^K, VW_i^V)
+\end{align*}    
+\tag{5}\]</span></span></p>
+<p>其中 <span class="math inline">\(W_i^Q, W_i^K, W_i^V\)</span> 是用于将输入向量投影到子空间的权重矩阵，<span class="math inline">\(W^O\)</span> 是用于将所有子空间的输出拼接起来的权重矩阵。Multi-Head Attention 的作用是通过多个子空间来捕捉不同的语义信息，从而提高模型的表达能力。</p>
+<blockquote class="blockquote">
+<p>Instead of performing a single attention function with dmodel-dimensional keys, values and queries, we found it beneficial to linearly project the queries, keys and values h times with different, learned linear projections to dk, dk and dv dimensions, respectively.</p>
+</blockquote>
+<p>尽管增加了Heads会增加计算量，但由于每个Head的维度较小，因此可以并行计算，从而提高了模型的效率。Multi-Head Attention 使得模型能够同时关注输入序列中的不同部分，从而捕捉到更丰富的语义信息。</p>
+<blockquote class="blockquote">
+<p>Due to the reduced dimension of each head, the total computational cost is similar to that of single-head attention with full dimensionality.</p>
+</blockquote>
+</section>
+<section id="causal-attention" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="causal-attention"><span class="header-section-number">2.4</span> Causal Attention</h3>
+<p>Causal Attention（因果注意力）是Transformer中的一个重要概念，它的作用是防止模型在训练时看到未来的信息，从而保证模型的自回归特性。具体来说，Causal Attention会在计算注意力时，将未来的信息屏蔽掉，从而使得模型只能看到当前和过去的信息。这样可以保证模型在训练时不会看到未来的信息，从而保证模型的自回归特性。 Causal Attention通常作用在Decoder 模块中。 <img src="01-attention.assets/causal-attention.png" id="fig-causal-attention" class="img-fluid" alt="Illustration of Causal Attention"> Causal Attention的公式为： <span id="eq-causal-attention"><span class="math display">\[
+\text{CausalAttention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}} + M\right)V
+\tag{6}\]</span></span></p>
+<p>在这个公式中，<span class="math inline">\(M\)</span> 是一个掩码矩阵（mask matrix），它的作用是将未来的信息屏蔽掉。具体来说，<span class="math inline">\(M\)</span> 是一个上三角矩阵，它的对角线以下的元素为0，对角线以上的元素为负无穷大（-inf）。这样在计算Softmax时，对角线以上的元素会被屏蔽掉，从而保证模型只能看到当前和过去的信息。</p>
+</section>
+<section id="cross-attention" class="level3" data-number="2.5">
+<h3 data-number="2.5" class="anchored" data-anchor-id="cross-attention"><span class="header-section-number">2.5</span> Cross Attention</h3>
+<p>Cross Attention（交叉注意力）是Transformer中的另一个重要概念，它的作用是将Encoder的输出与Decoder的输入进行交叉注意力计算，从而使得Decoder能够利用Encoder的输出信息。具体来说，Cross Attention会将Encoder的输出作为键（Key）和值（Value），将Decoder的输入作为查询（Query），然后计算注意力。 Cross Attention的公式与Attention <a href="#eq-attention" class="quarto-xref">Equation&nbsp;4</a> 类似，只不过将Encoder的输出作为键和值，Decoder的输入作为查询</p>
+</section>
+<section id="layer-normalization" class="level3" data-number="2.6">
+<h3 data-number="2.6" class="anchored" data-anchor-id="layer-normalization"><span class="header-section-number">2.6</span> Layer Normalization</h3>
+<p>Layer Normalization是Transformer中的一个重要模块，它可以帮助模型更快地收敛。Layer Normalization的作用是对每个位置的向量进行归一化处理，从而使得模型在训练时更加稳定。具体来说，Layer Normalization会对<strong>每个位置的向量(feature)</strong>进行均值和方差的归一化处理，使得每个位置的向量都具有相同的分布。这样可以使得模型在训练时更加稳定，从而加快模型的收敛速度。</p>
+<div id="fig-layer-normalization" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-layer-normalization-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-attention.assets/layer-norm.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-layer-normalization-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Illustration of Layer Normalization
+</figcaption>
+</figure>
+</div>
+<p>Layer Normalization的公式为： <span id="eq-layer-normalization"><span class="math display">\[
+\text{LayerNorm}(x) = \frac{x - \mu}{\sigma}
+\tag{7}\]</span></span></p>
+<p>其中 <span class="math inline">\(\mu\)</span> 是向量 <span class="math inline">\(x\)</span> 的均值，<span class="math inline">\(\sigma\)</span> 是向量 <span class="math inline">\(x\)</span> 的标准差。Layer Normalization的作用是对每个位置的向量进行归一化处理，从而使得模型在训练时更加稳定。 对于一个batch的输入，Layer Normalization会对每个位置的向量进行归一化处理，而不是对整个batch进行归一化处理。这使得Layer Normalization可以更好地适应不同长度的序列，从而提高模型的性能。具体来说, <span class="math inline">\(x \in \mathbb{R}^{B \times H \times S \times d_v}\)</span>我们对每个位置的向量也就是 <span class="math inline">\(S\)</span> 维度进行归一化处理，而不是对整个batch进行归一化处理。这样可以使得模型在训练时更加稳定，从而加快模型的收敛速度。</p>
+</section>
+<section id="residual-connection" class="level3" data-number="2.7">
+<h3 data-number="2.7" class="anchored" data-anchor-id="residual-connection"><span class="header-section-number">2.7</span> Residual Connection</h3>
+<p><span id="eq-residual-connection"><span class="math display">\[
+\text{Output} = \mathrm{LayerNorm}\bigl(\mathbf{x} + \mathrm{Sublayer}(\mathbf{x})\bigr)
+\tag{8}\]</span></span></p>
+<div id="fig-residual-connection" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-residual-connection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01-attention.assets/residuakl-connection.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-residual-connection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Illustration of Residual Connection
+</figcaption>
+</figure>
+</div>
+<p>学习Residual Connection的目的是为了让模型更容易学习到Identity Mapping。具体来说，Residual Connection会将输入的向量与子层的输出相加，从而使得模型可以更容易地学习到Identity Mapping。这样可以使得模型在训练时更加稳定，从而加快模型的收敛速度。在优化的过程中，让Gradient Information更容易地传递到前面的层，从而使得模型更容易学习到Identity Mapping。Residual Connection的公式为： <span id="eq-residual-connection-gradient"><span class="math display">\[
+\frac{\partial \mathcal L}{\partial \mathbf{x}} = \underbrace{\frac{\partial \mathcal L}{\partial \mathbf{y}}}_{\text{straight path}} + \underbrace{\frac{\partial \mathcal L}{\partial \mathbf{y}}\frac{\partial\,\mathrm{Sublayer}(\mathbf{x})}{\partial \mathbf{x}}}_{\text{through the sub-layer}}
+\tag{9}\]</span></span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>在后续的研究中表示，Normalization的位置可以放在Residual Connection的前面或者后面，效果差不多。Transformer论文中是放在后面的（Post-Normalization）<a href="#eq-residual-connection" class="quarto-xref">Equation&nbsp;8</a> 。但在后续的研究中，很多模型（比如BERT）将Normalization放在Residual Connection的前面（Pre-Normalization）。 <span id="eq-pre-normalization"><span class="math display">\[
+\text{Output} = \mathrm{Sublayer}(\mathbf{x}) + \mathrm{LayerNorm}(\mathbf{x})
+\tag{10}\]</span></span></p>
+</div>
+</div>
+</section>
+<section id="point-wise-feed-forward-network" class="level3" data-number="2.8">
+<h3 data-number="2.8" class="anchored" data-anchor-id="point-wise-feed-forward-network"><span class="header-section-number">2.8</span> Point-Wise Feed Forward Network</h3>
+<p>Point-Wise Feed Forward Network是Transformer中的一个重要模块，它的作用是对每个位置的向量进行非线性变换。具体来说，Point-Wise Feed Forward Network由两个线性变换和一个ReLU激活函数组成。它的作用是对每个位置的向量进行非线性变换，从而使得模型可以更好地捕捉到输入序列中的不同语义信息。 Point-Wise Feed Forward Network的公式为： <span id="eq-point-wise-ffn"><span class="math display">\[
+\text{FFN}(x) = \max(0, xW_1 + b_1)W_2 + b_2
+\tag{11}\]</span></span></p>
+<p>其中 <span class="math inline">\(W_1\)</span> 和 <span class="math inline">\(W_2\)</span> 是线性变换的权重矩阵，<span class="math inline">\(b_1\)</span> 和 <span class="math inline">\(b_2\)</span> 是偏置项。Point-Wise Feed Forward Network的作用是对每个位置的向量进行非线性变换，从而使得模型可以更好地捕捉到输入序列中的不同语义信息。</p>
+</section>
+<section id="output-linear-projection-softmax" class="level3" data-number="2.9">
+<h3 data-number="2.9" class="anchored" data-anchor-id="output-linear-projection-softmax"><span class="header-section-number">2.9</span> Output Linear Projection &amp; Softmax</h3>
+<p>在Transformer的Decoder中，最后一步是将Decoder的输出通过一个线性变换和Softmax函数转换为词汇表中的概率分布。这个过程可以看作是将Decoder的输出映射到词汇表中的每个词的概率。具体来说， <span id="eq-output-softmax"><span class="math display">\[\text{Output} = \text{Softmax}(xW + b)
+\tag{12}\]</span></span> 其中 <span class="math inline">\(W\)</span> 是线性变换的权重矩阵，<span class="math inline">\(b\)</span> 是偏置项。Softmax函数将线性变换的输出转换为概率分布，从而使得模型可以生成下一个词的概率分布。</p>
+<p>在这个过程中，Transformer 的作者采用了一种 <strong>weight tying</strong> 的方法，将输入的词嵌入矩阵和输出的线性变换矩阵共享同一个权重矩阵。这种方法可以减少模型的参数量，从而提高模型的效率，并且在实践中效果也很好。具体来说，Transformer 的作者将输入的词嵌入矩阵和输出的线性变换矩阵共享同一个权重矩阵，这样可以减少模型的参数量，从而提高模型的效率。</p>
+</section>
+<section id="full-process" class="level3 page-columns page-full" data-number="2.10">
+<h3 data-number="2.10" class="anchored" data-anchor-id="full-process"><span class="header-section-number">2.10</span> Full Process</h3>
+<div class="page-columns page-full">
+<div id="fig-full-transformer" class="quarto-layout-panel page-columns page-full">
+<figure class="quarto-float quarto-float-fig figure page-columns page-full">
+<div aria-describedby="fig-full-transformer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
+<div class="quarto-layout-row column-page">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-full-transformer" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-transformer-encoding" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-transformer-encoding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./01-attention.assets/transformer-encoding.gif" class="img-fluid figure-img" data-ref-parent="fig-full-transformer">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-transformer-encoding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Transformer Encoding Process
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-full-transformer" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-transformer-decoding" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-transformer-decoding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./01-attention.assets/transformer-decoding.gif" class="img-fluid figure-img" data-ref-parent="fig-full-transformer">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-transformer-decoding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Transformer Decoding Process
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-full-transformer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Illustation of Transformer Encoding and Decoding Process (Image Source: <a href="https://jalammar.github.io/illustrated-transformer/">The Illustrated Transformer</a>)
+</figcaption>
+</figure>
+</div>
+</div>
+<p>如图 <a href="#fig-full-transformer" class="quarto-xref">Figure&nbsp;4</a> 所示，Transformer的编码过程和解码过程是相似的。编码过程将输入的token转换为向量，然后通过多个Encoder Block进行编码，最后通过一个线性变换和Softmax函数转换为词汇表中的概率分布。解码过程则是将Encoder的输出与Decoder的输入进行交叉注意力计算，然后通过多个Decoder Block进行解码，最后通过一个线性变换和Softmax函数转换为词汇表中的概率分布。</p>
+</section>
+<section id="training-process" class="level3" data-number="2.11">
+<h3 data-number="2.11" class="anchored" data-anchor-id="training-process"><span class="header-section-number">2.11</span> Training Process</h3>
+<p>接下来，我们探讨一下Transformer的训练过程。Transformer的训练过程与其他神经网络模型类似，主要包括以下几个步骤：</p>
+<ol type="1">
+<li><strong>数据预处理</strong>：将输入的文本数据转换为token，并进行分词和编码。通常使用Word Embedding将每个token转换为一个固定维度的向量。</li>
+<li><strong>模型初始化</strong>：初始化Transformer模型的参数，包括Word Embedding、Position Embedding、Multi-Head Attention、Point-Wise Feed Forward Network等模块的参数。</li>
+<li><strong>前向传播</strong>：将输入的token通过Word Embedding和Position Embedding转换为向量，然后通过多个Encoder Block进行编码，最后通过一个线性变换和Softmax函数转换为词汇表中的概率分布。</li>
+<li><strong>计算损失</strong>：使用交叉熵损失函数（Cross-Entropy Loss）计算模型的输出与真实标签之间的差异。交叉熵损失函数是一个常用的分类损失函数，它可以衡量模型的输出概率分布与真实标签之间的差异。</li>
+<li><strong>反向传播</strong>：通过计算损失函数对模型参数的梯度，使用梯度下降算法（如Adam优化器）更新模型的参数。梯度下降算法是一种常用的优化算法，它可以通过计算损失函数对模型参数的梯度来更新模型的参数，从而使得模型的输出更接近真实标签</li>
+</ol>
+<p>具体的实现过程，我们将在接下来的PyTorch实现中详细介绍。</p>
 </section>
 </section>
 <section id="pytorch-实现" class="level2" data-number="3">
@@ -542,8 +764,8 @@ Figure&nbsp;1: The Transformer Family Version 2.0 | Lil’Log
 <span id="cb4-8"><a href="#cb4-8"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
 <span id="cb4-9"><a href="#cb4-9"></a>        <span class="cf">return</span> <span class="va">self</span>.linear2(<span class="va">self</span>.relu(<span class="va">self</span>.linear1(x)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="layer-normalization" class="level3" data-number="3.4">
-<h3 data-number="3.4" class="anchored" data-anchor-id="layer-normalization"><span class="header-section-number">3.4</span> Layer Normalization</h3>
+<section id="layer-normalization-1" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="layer-normalization-1"><span class="header-section-number">3.4</span> Layer Normalization</h3>
 <p>还有一个重要的模块是Layer Normalization，它可以帮助模型更快地收敛。</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">class</span> LayerNormalization(nn.Module):</span>
 <span id="cb5-2"><a href="#cb5-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, in_features, eps<span class="op">=</span><span class="fl">1e-6</span>):</span>
@@ -558,8 +780,8 @@ Figure&nbsp;1: The Transformer Family Version 2.0 | Lil’Log
 <span id="cb5-11"><a href="#cb5-11"></a>        normalized_x <span class="op">=</span> (x <span class="op">-</span> mean) <span class="op">/</span> torch.sqrt(var <span class="op">+</span> <span class="va">self</span>.eps)</span>
 <span id="cb5-12"><a href="#cb5-12"></a>        <span class="cf">return</span> <span class="va">self</span>.weight <span class="op">*</span> normalized_x <span class="op">+</span> <span class="va">self</span>.bias</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="multi-head-attention" class="level3" data-number="3.5">
-<h3 data-number="3.5" class="anchored" data-anchor-id="multi-head-attention"><span class="header-section-number">3.5</span> Multi Head Attention</h3>
+<section id="multi-head-attention-1" class="level3" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="multi-head-attention-1"><span class="header-section-number">3.5</span> Multi Head Attention</h3>
 <p>Multi Head Attention是Transformer的核心模块。它的作用是将输入的向量进行多头注意力计算，从而捕捉到不同的语义信息。</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -625,6 +847,89 @@ Important
 <li><strong>Sparse Attention</strong>: 通过稀疏化注意力矩阵来降低计算复杂度。比如，Reformer模型使用了局部敏感哈希（LSH）来实现稀疏注意力。</li>
 <li><strong>Linear Attention</strong>: 通过将注意力计算转换为线性时间复杂度</li>
 </ul>
+</section>
+<section id="qa" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="qa"><span class="header-section-number">5</span> Q&amp;A</h2>
+<div class="callout callout-style-simple callout-QA no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+问题：为什么要用 $\sqrt{d_k}$ 缩放点积？
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>回答：如果不缩放，当 <span class="math inline">\(d_k\)</span> 很大时，QK 的方差也会变大，使 softmax 落入梯度非常小的区域。除以 <span class="math inline">\(\sqrt{d_k}\)</span> 有助于将激活值保持在适合训练的范围内。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-QA no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+问题：多头注意力解决了什么问题？
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>回答：它让模型可以同时关注不同的表示子空间和位置的信息，从而克服单头自注意力容易“平均化”的问题。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-QA no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+问题：Transformer 如何实现自回归式解码？
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>回答：解码器通过将未来位置的注意力得分设为 <span class="math inline">\(-\infty\)</span> 来屏蔽它们，确保每个位置只能关注到前面的输出。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-QA no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+问题：为什么使用正弦位置编码而不是可学习的位置编码？
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>回答：正弦位置编码允许模型推广到更长的序列，参数量少，并且在 BLEU 分数上与可学习的位置编码效果相当。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-QA no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+问题：与 RNN/CNN 相比，路径长度和计算复杂度有何不同？
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>回答：自注意力的路径长度是常数，每层的计算复杂度是 <span class="math inline">\(\mathcal{O}(n²d)\)</span>；而 RNN 需要 <span class="math inline">\(\mathcal{O}(n)\)</span> 的串行步骤，CNN 需要堆叠多层才能覆盖长距离依赖。</p>
+</div>
+</div>
+</div>
 
 
 </section>

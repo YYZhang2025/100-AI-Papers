@@ -72,3 +72,19 @@ execute:
   echo: true # 可选，显示代码
   eval: false # 关键：默认不执行代码
 freeze: true
+
+custom-callout:
+  QA:
+    title: "Q&A"
+    icon-symbol: "🗨️"
+    color: "#e7f3ff"
+    appearance: "minimal"
+    collapse: true
+
+  thumbs-up:
+    title: "Great job!"
+    icon-symbol: "fa-thumbs-up"
+    color: "#008000"
+
+filters:
+  - custom-callout
