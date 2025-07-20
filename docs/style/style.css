@@ -1,4 +1,35 @@
 @font-face {
   font-family: "MyFont";
+  src: url("LXGWWenKai-Regular.ttf");
+}
+
+@font-face {
+  font-family: "cmunrm";
   src: url("cmunrm.ttf");
 }
+
+body {
+  font-family: "MyFont";
+}
+
+h1,
+h2,
+h3 {
+  font-family: "cmunrm";
+}
+
+
+
+/* Medium screen */
+@media (max-width: 1024px) {
+  .page-columns {
+    max-width: 90%;
+  }
+}
+
+/* Mobile screen */
+@media (max-width: 768px) {
+  .page-columns {
+    max-width: 95%;
+  }
+} */

@@ -78,9 +78,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-8c017e04b27c8586af1623e7207bb52c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-7ddd24ee98d70ca00bb532ce6196e657.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark-62960f262fec3dcc18a72ed9802b3bf0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-8c017e04b27c8586af1623e7207bb52c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-7ddd24ee98d70ca00bb532ce6196e657.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -110,6 +110,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <link href="https://fonts.cdnfonts.com/css/cmu-sans-serif" rel="stylesheet">
 <style>
+div.callout-QA.callout {
+  border-left-color: #e7f3ff;
+}
+div.callout-QA.callout-style-default > .callout-header {
+  background-color: rgba(231, 243, 255, 0.13);
+}
+div.callout-QA .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-QA.callout-style-default .callout-icon::before, div.callout-QA.callout-titled .callout-icon::before {
+  content: '🗨️';
+  background-image: none;
+}
 div.callout-thumbs-up.callout {
   border-left-color: #008000;
 }
@@ -121,17 +132,6 @@ div.callout-thumbs-up.callout-style-default .callout-icon::before, div.callout-t
   font-family: 'Font Awesome 6 Free', FontAwesome;
   font-style: normal;
   content: '\f164' !important;
-  background-image: none;
-}
-div.callout-QA.callout {
-  border-left-color: #e7f3ff;
-}
-div.callout-QA.callout-style-default > .callout-header {
-  background-color: rgba(231, 243, 255, 0.13);
-}
-div.callout-QA .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-QA.callout-style-default .callout-icon::before, div.callout-QA.callout-titled .callout-icon::before {
-  content: '🗨️';
   background-image: none;
 }
 </style>
@@ -419,20 +419,22 @@ window.Quarto = {
   <ul>
   <li><a href="#dot-product-similarity点积相似度" id="toc-dot-product-similarity点积相似度" class="nav-link" data-scroll-target="#dot-product-similarity点积相似度"><span class="header-section-number">1.1</span> Dot Product Similarity（点积相似度）</a></li>
   <li><a href="#softmax-函数" id="toc-softmax-函数" class="nav-link" data-scroll-target="#softmax-函数"><span class="header-section-number">1.2</span> Softmax 函数</a></li>
+  <li><a href="#matrix-multiplication" id="toc-matrix-multiplication" class="nav-link" data-scroll-target="#matrix-multiplication"><span class="header-section-number">1.3</span> Matrix Multiplication</a></li>
   </ul></li>
   <li><a href="#attention-is-all-you-need" id="toc-attention-is-all-you-need" class="nav-link" data-scroll-target="#attention-is-all-you-need"><span class="header-section-number">2</span> Attention is All You Need</a>
   <ul>
   <li><a href="#input-embedding" id="toc-input-embedding" class="nav-link" data-scroll-target="#input-embedding"><span class="header-section-number">2.1</span> Input Embedding</a></li>
   <li><a href="#positional-encoding" id="toc-positional-encoding" class="nav-link" data-scroll-target="#positional-encoding"><span class="header-section-number">2.2</span> Positional Encoding</a></li>
   <li><a href="#multi-head-attention" id="toc-multi-head-attention" class="nav-link" data-scroll-target="#multi-head-attention"><span class="header-section-number">2.3</span> Multi-Head Attention</a></li>
-  <li><a href="#causal-attention" id="toc-causal-attention" class="nav-link" data-scroll-target="#causal-attention"><span class="header-section-number">2.4</span> Causal Attention</a></li>
-  <li><a href="#cross-attention" id="toc-cross-attention" class="nav-link" data-scroll-target="#cross-attention"><span class="header-section-number">2.5</span> Cross Attention</a></li>
-  <li><a href="#layer-normalization" id="toc-layer-normalization" class="nav-link" data-scroll-target="#layer-normalization"><span class="header-section-number">2.6</span> Layer Normalization</a></li>
-  <li><a href="#residual-connection" id="toc-residual-connection" class="nav-link" data-scroll-target="#residual-connection"><span class="header-section-number">2.7</span> Residual Connection</a></li>
-  <li><a href="#point-wise-feed-forward-network" id="toc-point-wise-feed-forward-network" class="nav-link" data-scroll-target="#point-wise-feed-forward-network"><span class="header-section-number">2.8</span> Point-Wise Feed Forward Network</a></li>
-  <li><a href="#output-linear-projection-softmax" id="toc-output-linear-projection-softmax" class="nav-link" data-scroll-target="#output-linear-projection-softmax"><span class="header-section-number">2.9</span> Output Linear Projection &amp; Softmax</a></li>
-  <li><a href="#full-process" id="toc-full-process" class="nav-link" data-scroll-target="#full-process"><span class="header-section-number">2.10</span> Full Process</a></li>
-  <li><a href="#training-process" id="toc-training-process" class="nav-link" data-scroll-target="#training-process"><span class="header-section-number">2.11</span> Training Process</a></li>
+  <li><a href="#time-complexity-of-multi-head-attention" id="toc-time-complexity-of-multi-head-attention" class="nav-link" data-scroll-target="#time-complexity-of-multi-head-attention"><span class="header-section-number">2.4</span> Time Complexity of Multi-Head Attention</a></li>
+  <li><a href="#causal-attention" id="toc-causal-attention" class="nav-link" data-scroll-target="#causal-attention"><span class="header-section-number">2.5</span> Causal Attention</a></li>
+  <li><a href="#cross-attention" id="toc-cross-attention" class="nav-link" data-scroll-target="#cross-attention"><span class="header-section-number">2.6</span> Cross Attention</a></li>
+  <li><a href="#layer-normalization" id="toc-layer-normalization" class="nav-link" data-scroll-target="#layer-normalization"><span class="header-section-number">2.7</span> Layer Normalization</a></li>
+  <li><a href="#residual-connection" id="toc-residual-connection" class="nav-link" data-scroll-target="#residual-connection"><span class="header-section-number">2.8</span> Residual Connection</a></li>
+  <li><a href="#point-wise-feed-forward-network" id="toc-point-wise-feed-forward-network" class="nav-link" data-scroll-target="#point-wise-feed-forward-network"><span class="header-section-number">2.9</span> Point-Wise Feed Forward Network</a></li>
+  <li><a href="#output-linear-projection-softmax" id="toc-output-linear-projection-softmax" class="nav-link" data-scroll-target="#output-linear-projection-softmax"><span class="header-section-number">2.10</span> Output Linear Projection &amp; Softmax</a></li>
+  <li><a href="#full-process" id="toc-full-process" class="nav-link" data-scroll-target="#full-process"><span class="header-section-number">2.11</span> Full Process</a></li>
+  <li><a href="#training-process" id="toc-training-process" class="nav-link" data-scroll-target="#training-process"><span class="header-section-number">2.12</span> Training Process</a></li>
   </ul></li>
   <li><a href="#pytorch-实现" id="toc-pytorch-实现" class="nav-link" data-scroll-target="#pytorch-实现"><span class="header-section-number">3</span> PyTorch 实现</a>
   <ul>
@@ -480,25 +482,29 @@ window.Quarto = {
 
 <section id="preliminary" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="preliminary"><span class="header-section-number">1</span> Preliminary</h2>
+<p>在理解Transformer之前，我们需要先了解一些基本的概念。有基础的同学可以跳过这一节，直接看下一节的Transformer模型架构。</p>
 <section id="dot-product-similarity点积相似度" class="level3" data-number="1.1">
 <h3 data-number="1.1" class="anchored" data-anchor-id="dot-product-similarity点积相似度"><span class="header-section-number">1.1</span> Dot Product Similarity（点积相似度）</h3>
 <p>给定两个向量 <span class="math inline">\(\mathbf{q}, \mathbf{k} \in \mathbb{R}^d\)</span>, 它们的点积为: <span id="eq-dot-product"><span class="math display">\[
-\text{score} = \mathbf{q} \cdot \mathbf{k} = \sum_{i=1}^{d} q_i k_i
+\text{score}(\mathbf{q}, \mathbf{k}) = \mathbf{q} \cdot \mathbf{k} = \sum_{i=1}^{d} q_i k_i
 \tag{1}\]</span></span></p>
-<ul>
-<li>测量两个向量的<strong>相似度</strong>, 数值越大，说明两个向量越相似</li>
-<li>在 Self-Attention 中，用来衡量“当前词对其他词的关注程度”</li>
-</ul>
+<p>这个score用于测量两个向量的<em>相似度</em>, 数值越大，说明两个向量越相似</p>
 </section>
 <section id="softmax-函数" class="level3" data-number="1.2">
 <h3 data-number="1.2" class="anchored" data-anchor-id="softmax-函数"><span class="header-section-number">1.2</span> Softmax 函数</h3>
-<p>给定向量 <span class="math inline">\(\mathbf{x} = (x_1, x_2, \ldots, x_n)\)</span>，Softmax 函数定义为: <span id="eq-softmax"><span class="math display">\[
-\text{Softmax}(x_i) = \frac{e^{x_i}}{\sum_j e^{x_j}}
+<p>给定向量 <span class="math inline">\(\mathbf{x} = (x_1, x_2, \ldots, x_n)\)</span>，softmax 函数定义为: <span id="eq-softmax"><span class="math display">\[
+\text{softmax}(x_i) = \frac{e^{x_i}}{\sum_j e^{x_j}}
 \tag{2}\]</span></span></p>
-<ul>
-<li>将注意力“得分（dot product）”转换为概率分布</li>
-<li>每个词对其他词的注意力权重 <span class="math inline">\(\alpha_{ij} \in [0, 1]\)</span></li>
-</ul>
+<p>softmax 函数将向量 <span class="math inline">\(\mathbf{x}\)</span> 转换为一个<em>概率分布</em>，所有元素的和为1。它常用于将模型的输出转换为概率分布。</p>
+<p>计算softmax 的时间复杂度为 <span class="math inline">\(\mathcal{O}(n)\)</span>，其中 <span class="math inline">\(n\)</span> 是向量 <span class="math inline">\(\mathbf{x}\)</span> 的维度。</p>
+</section>
+<section id="matrix-multiplication" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="matrix-multiplication"><span class="header-section-number">1.3</span> Matrix Multiplication</h3>
+<p>给定矩阵 <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{m \times n}\)</span> 和 <span class="math inline">\(\mathbf{B} \in \mathbb{R}^{n \times p}\)</span>，它们的矩阵乘法定义为: <span id="eq-matrix-multiplication"><span class="math display">\[
+\mathbf{C} = \mathbf{A} \cdot \mathbf{B} \in \mathbb{R}^{m \times p}
+\tag{3}\]</span></span></p>
+<p>矩阵乘法是线性代数中的基本运算，用于将两个矩阵相乘，得到一个新的矩阵。它在神经网络中被广泛使用，尤其是在计算注意力分数时。其中，Matrix Multiplication的时间复杂度为 <span class="math inline">\(\mathcal{O}(mnp)\)</span>，其中 <span class="math inline">\(m\)</span> 是 <span class="math inline">\(\mathbf{A}\)</span> 的行数，<span class="math inline">\(n\)</span> 是 <span class="math inline">\(\mathbf{A}\)</span> 的列数，也是 <span class="math inline">\(\mathbf{B}\)</span> 的行数，<span class="math inline">\(p\)</span> 是 <span class="math inline">\(\mathbf{B}\)</span> 的列数。</p>
+<p>Wikipedia 上有一个关于 <a href="https://en.wikipedia.org/wiki/Computational_complexity_of_matrix_multiplication">Matrix Multiplication</a> 的详细介绍。</p>
 </section>
 </section>
 <section id="attention-is-all-you-need" class="level2 page-columns page-full" data-number="2">
@@ -543,14 +549,14 @@ Figure&nbsp;1: The Transformer Family Version 2.0 | Lil’Log
 \mathrm{PE}(pos,2i)=\sin\!\bigl(pos \times \tfrac{1}{10000^{2i/d_\mathrm{model}}}\bigr) \\
 \mathrm{PE}(pos,2i{+}1)=\cos\!\bigl(pos \times \tfrac{1}{10000^{2i/d_\mathrm{model}}}\bigr)
 \end{align}
-\tag{3}\]</span></span></p>
+\tag{4}\]</span></span></p>
 <p>其中 <span class="math inline">\(d_{\text{model}}\)</span> 是位置编码的维度（与Word Embedding 的维度一样大）。位置编码的作用是为每个词提供一个唯一的位置信息，使得模型能够捕捉到词语在序列中的相对位置关系。</p>
 </section>
 <section id="multi-head-attention" class="level3" data-number="2.3">
 <h3 data-number="2.3" class="anchored" data-anchor-id="multi-head-attention"><span class="header-section-number">2.3</span> Multi-Head Attention</h3>
 <p>Multi-Head Attention是Transformer的核心模块。它的作用是将输入的向量进行多头注意力计算，从而捕捉到不同的语义信息。Attention 其实就是一个<strong>加权求和</strong>的过程，它可以看作是对输入向量的加权平均。其核心公式为： <span id="eq-attention"><span class="math display">\[
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
-\tag{4}\]</span></span></p>
+\tag{5}\]</span></span></p>
 <p>其中 <span class="math inline">\(Q\)</span>、<span class="math inline">\(K\)</span>、<span class="math inline">\(V\)</span> 分别是查询（Query）、键（Key）和值（Value）矩阵，其中 <span class="math inline">\(\sqrt{d_k}\)</span> 是一个缩放因子，用来防止点积的值过大导致梯度消失。这个公式的含义是：首先计算查询和键的点积，然后通过Softmax函数将其转换为概率分布，最后用这个概率分布对值进行加权求和。</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -562,7 +568,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><a href="#eq-attention" class="quarto-xref">Equation&nbsp;4</a> 是Attention的核心公式，它是Transformer的核心模块。理解这个公式是理解Transformer的关键。后续很多的创新和变体都是在这个公式的基础上进行的。</p>
+<p><a href="#eq-attention" class="quarto-xref">Equation&nbsp;5</a> 是Attention的核心公式，它是Transformer的核心模块。理解这个公式是理解Transformer的关键。后续很多的创新和变体都是在这个公式的基础上进行的。</p>
 </div>
 </div>
 <p>Multi-Head Attention 是Attention@eq-attention 的一个扩展，它将输入的向量分成多个子空间（head），然后在每个子空间上独立地计算注意力。最后，将所有子空间的输出拼接起来，得到最终的输出。Multi-Head Attention 的公式为： <span id="eq-multi-head-attention"><span class="math display">\[
@@ -570,7 +576,7 @@ Note
 \text{MultiHead}(Q, K, V) &amp;= \text{Concat}(\text{head}_1, \ldots, \text{head}_h)W^O \\
 \text{head}_i &amp;= \text{Attention}(QW_i^Q, KW_i^K, VW_i^V)
 \end{align*}    
-\tag{5}\]</span></span></p>
+\tag{6}\]</span></span></p>
 <p>其中 <span class="math inline">\(W_i^Q, W_i^K, W_i^V\)</span> 是用于将输入向量投影到子空间的权重矩阵，<span class="math inline">\(W^O\)</span> 是用于将所有子空间的输出拼接起来的权重矩阵。Multi-Head Attention 的作用是通过多个子空间来捕捉不同的语义信息，从而提高模型的表达能力。</p>
 <blockquote class="blockquote">
 <p>Instead of performing a single attention function with dmodel-dimensional keys, values and queries, we found it beneficial to linearly project the queries, keys and values h times with different, learned linear projections to dk, dk and dv dimensions, respectively.</p>
@@ -580,19 +586,37 @@ Note
 <p>Due to the reduced dimension of each head, the total computational cost is similar to that of single-head attention with full dimensionality.</p>
 </blockquote>
 </section>
-<section id="causal-attention" class="level3" data-number="2.4">
-<h3 data-number="2.4" class="anchored" data-anchor-id="causal-attention"><span class="header-section-number">2.4</span> Causal Attention</h3>
+<section id="time-complexity-of-multi-head-attention" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="time-complexity-of-multi-head-attention"><span class="header-section-number">2.4</span> Time Complexity of Multi-Head Attention</h3>
+<p>我们假设input的长度为 <span class="math inline">\(n\)</span>，每个head的维度为 <span class="math inline">\(d_k\)</span>，则Multi-Head Attention的时间复杂度为 <span class="math inline">\(\mathcal{O}(n^2 d_k)\)</span> <a href="#eq-matrix-multiplication" class="quarto-xref">Equation&nbsp;3</a>。</p>
+<p>接下来是Softmax的计算，Softmax的时间复杂度为 <span class="math inline">\(\mathcal{O}(n)\)</span>。对于每个score matrix <span class="math inline">\(QK^T \in \mathbf{R}^{n \times n}\)</span>，的每一行，我们需要计算 softmax，这需要 <span class="math inline">\(n\)</span> 次计算。因此，Softmax的时间复杂度为 <span class="math inline">\(\mathcal{O}(n^2)\)</span>。</p>
+<p>之后是对于value的加权，计算复杂度也是 <span class="math inline">\(\mathcal{O}(n^2d)\)</span>. 所以总的时间复杂度为：<span class="math inline">\(\mathcal{O}(n^2)\)</span>, 随着 <span class="math inline">\(n\)</span> 的增加，计算复杂度会Polynomial 增长。具体的计算复杂度如下表所示： <span id="eq-multi-head-attention-complexity"><span class="math display">\[
+\begin{array}{|l|l|}
+\hline
+\textbf{Step} &amp; \textbf{Time Complexity} \\
+\hline
+QK^\top &amp; \mathcal{O}(n^2 d) \\
+\text{softmax}(QK^\top) &amp; \mathcal{O}(n^2) \\
+\text{attention} \times V &amp; \mathcal{O}(n^2 d) \\
+\hline
+\textbf{Total} &amp; \mathcal{O}(n^2 d) \\
+\hline
+\end{array}
+\tag{7}\]</span></span></p>
+</section>
+<section id="causal-attention" class="level3" data-number="2.5">
+<h3 data-number="2.5" class="anchored" data-anchor-id="causal-attention"><span class="header-section-number">2.5</span> Causal Attention</h3>
 <p>Causal Attention（因果注意力）是Transformer中的一个重要概念，它的作用是防止模型在训练时看到未来的信息，从而保证模型的自回归特性。具体来说，Causal Attention会在计算注意力时，将未来的信息屏蔽掉，从而使得模型只能看到当前和过去的信息。这样可以保证模型在训练时不会看到未来的信息，从而保证模型的自回归特性。 Causal Attention通常作用在Decoder 模块中。 <img src="01-attention.assets/causal-attention.png" id="fig-causal-attention" class="img-fluid" alt="Illustration of Causal Attention"> Causal Attention的公式为： <span id="eq-causal-attention"><span class="math display">\[
 \text{CausalAttention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}} + M\right)V
-\tag{6}\]</span></span></p>
+\tag{8}\]</span></span></p>
 <p>在这个公式中，<span class="math inline">\(M\)</span> 是一个掩码矩阵（mask matrix），它的作用是将未来的信息屏蔽掉。具体来说，<span class="math inline">\(M\)</span> 是一个上三角矩阵，它的对角线以下的元素为0，对角线以上的元素为负无穷大（-inf）。这样在计算Softmax时，对角线以上的元素会被屏蔽掉，从而保证模型只能看到当前和过去的信息。</p>
 </section>
-<section id="cross-attention" class="level3" data-number="2.5">
-<h3 data-number="2.5" class="anchored" data-anchor-id="cross-attention"><span class="header-section-number">2.5</span> Cross Attention</h3>
-<p>Cross Attention（交叉注意力）是Transformer中的另一个重要概念，它的作用是将Encoder的输出与Decoder的输入进行交叉注意力计算，从而使得Decoder能够利用Encoder的输出信息。具体来说，Cross Attention会将Encoder的输出作为键（Key）和值（Value），将Decoder的输入作为查询（Query），然后计算注意力。 Cross Attention的公式与Attention <a href="#eq-attention" class="quarto-xref">Equation&nbsp;4</a> 类似，只不过将Encoder的输出作为键和值，Decoder的输入作为查询</p>
+<section id="cross-attention" class="level3" data-number="2.6">
+<h3 data-number="2.6" class="anchored" data-anchor-id="cross-attention"><span class="header-section-number">2.6</span> Cross Attention</h3>
+<p>Cross Attention（交叉注意力）是Transformer中的另一个重要概念，它的作用是将Encoder的输出与Decoder的输入进行交叉注意力计算，从而使得Decoder能够利用Encoder的输出信息。具体来说，Cross Attention会将Encoder的输出作为键（Key）和值（Value），将Decoder的输入作为查询（Query），然后计算注意力。 Cross Attention的公式与Attention <a href="#eq-attention" class="quarto-xref">Equation&nbsp;5</a> 类似，只不过将Encoder的输出作为键和值，Decoder的输入作为查询</p>
 </section>
-<section id="layer-normalization" class="level3" data-number="2.6">
-<h3 data-number="2.6" class="anchored" data-anchor-id="layer-normalization"><span class="header-section-number">2.6</span> Layer Normalization</h3>
+<section id="layer-normalization" class="level3" data-number="2.7">
+<h3 data-number="2.7" class="anchored" data-anchor-id="layer-normalization"><span class="header-section-number">2.7</span> Layer Normalization</h3>
 <p>Layer Normalization是Transformer中的一个重要模块，它可以帮助模型更快地收敛。Layer Normalization的作用是对每个位置的向量进行归一化处理，从而使得模型在训练时更加稳定。具体来说，Layer Normalization会对<strong>每个位置的向量(feature)</strong>进行均值和方差的归一化处理，使得每个位置的向量都具有相同的分布。这样可以使得模型在训练时更加稳定，从而加快模型的收敛速度。</p>
 <div id="fig-layer-normalization" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -606,14 +630,14 @@ Figure&nbsp;2: Illustration of Layer Normalization
 </div>
 <p>Layer Normalization的公式为： <span id="eq-layer-normalization"><span class="math display">\[
 \text{LayerNorm}(x) = \frac{x - \mu}{\sigma}
-\tag{7}\]</span></span></p>
+\tag{9}\]</span></span></p>
 <p>其中 <span class="math inline">\(\mu\)</span> 是向量 <span class="math inline">\(x\)</span> 的均值，<span class="math inline">\(\sigma\)</span> 是向量 <span class="math inline">\(x\)</span> 的标准差。Layer Normalization的作用是对每个位置的向量进行归一化处理，从而使得模型在训练时更加稳定。 对于一个batch的输入，Layer Normalization会对每个位置的向量进行归一化处理，而不是对整个batch进行归一化处理。这使得Layer Normalization可以更好地适应不同长度的序列，从而提高模型的性能。具体来说, <span class="math inline">\(x \in \mathbb{R}^{B \times H \times S \times d_v}\)</span>我们对每个位置的向量也就是 <span class="math inline">\(S\)</span> 维度进行归一化处理，而不是对整个batch进行归一化处理。这样可以使得模型在训练时更加稳定，从而加快模型的收敛速度。</p>
 </section>
-<section id="residual-connection" class="level3" data-number="2.7">
-<h3 data-number="2.7" class="anchored" data-anchor-id="residual-connection"><span class="header-section-number">2.7</span> Residual Connection</h3>
+<section id="residual-connection" class="level3" data-number="2.8">
+<h3 data-number="2.8" class="anchored" data-anchor-id="residual-connection"><span class="header-section-number">2.8</span> Residual Connection</h3>
 <p><span id="eq-residual-connection"><span class="math display">\[
 \text{Output} = \mathrm{LayerNorm}\bigl(\mathbf{x} + \mathrm{Sublayer}(\mathbf{x})\bigr)
-\tag{8}\]</span></span></p>
+\tag{10}\]</span></span></p>
 <div id="fig-residual-connection" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-residual-connection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -626,7 +650,7 @@ Figure&nbsp;3: Illustration of Residual Connection
 </div>
 <p>学习Residual Connection的目的是为了让模型更容易学习到Identity Mapping。具体来说，Residual Connection会将输入的向量与子层的输出相加，从而使得模型可以更容易地学习到Identity Mapping。这样可以使得模型在训练时更加稳定，从而加快模型的收敛速度。在优化的过程中，让Gradient Information更容易地传递到前面的层，从而使得模型更容易学习到Identity Mapping。Residual Connection的公式为： <span id="eq-residual-connection-gradient"><span class="math display">\[
 \frac{\partial \mathcal L}{\partial \mathbf{x}} = \underbrace{\frac{\partial \mathcal L}{\partial \mathbf{y}}}_{\text{straight path}} + \underbrace{\frac{\partial \mathcal L}{\partial \mathbf{y}}\frac{\partial\,\mathrm{Sublayer}(\mathbf{x})}{\partial \mathbf{x}}}_{\text{through the sub-layer}}
-\tag{9}\]</span></span></p>
+\tag{11}\]</span></span></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -637,27 +661,27 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>在后续的研究中表示，Normalization的位置可以放在Residual Connection的前面或者后面，效果差不多。Transformer论文中是放在后面的（Post-Normalization）<a href="#eq-residual-connection" class="quarto-xref">Equation&nbsp;8</a> 。但在后续的研究中，很多模型（比如BERT）将Normalization放在Residual Connection的前面（Pre-Normalization）。 <span id="eq-pre-normalization"><span class="math display">\[
+<p>在后续的研究中表示，Normalization的位置可以放在Residual Connection的前面或者后面，效果差不多。Transformer论文中是放在后面的（Post-Normalization）<a href="#eq-residual-connection" class="quarto-xref">Equation&nbsp;10</a> 。但在后续的研究中，很多模型（比如BERT）将Normalization放在Residual Connection的前面（Pre-Normalization）。 <span id="eq-pre-normalization"><span class="math display">\[
 \text{Output} = \mathrm{Sublayer}(\mathbf{x}) + \mathrm{LayerNorm}(\mathbf{x})
-\tag{10}\]</span></span></p>
+\tag{12}\]</span></span></p>
 </div>
 </div>
 </section>
-<section id="point-wise-feed-forward-network" class="level3" data-number="2.8">
-<h3 data-number="2.8" class="anchored" data-anchor-id="point-wise-feed-forward-network"><span class="header-section-number">2.8</span> Point-Wise Feed Forward Network</h3>
+<section id="point-wise-feed-forward-network" class="level3" data-number="2.9">
+<h3 data-number="2.9" class="anchored" data-anchor-id="point-wise-feed-forward-network"><span class="header-section-number">2.9</span> Point-Wise Feed Forward Network</h3>
 <p>Point-Wise Feed Forward Network是Transformer中的一个重要模块，它的作用是对每个位置的向量进行非线性变换。具体来说，Point-Wise Feed Forward Network由两个线性变换和一个ReLU激活函数组成。它的作用是对每个位置的向量进行非线性变换，从而使得模型可以更好地捕捉到输入序列中的不同语义信息。 Point-Wise Feed Forward Network的公式为： <span id="eq-point-wise-ffn"><span class="math display">\[
 \text{FFN}(x) = \max(0, xW_1 + b_1)W_2 + b_2
-\tag{11}\]</span></span></p>
+\tag{13}\]</span></span></p>
 <p>其中 <span class="math inline">\(W_1\)</span> 和 <span class="math inline">\(W_2\)</span> 是线性变换的权重矩阵，<span class="math inline">\(b_1\)</span> 和 <span class="math inline">\(b_2\)</span> 是偏置项。Point-Wise Feed Forward Network的作用是对每个位置的向量进行非线性变换，从而使得模型可以更好地捕捉到输入序列中的不同语义信息。</p>
 </section>
-<section id="output-linear-projection-softmax" class="level3" data-number="2.9">
-<h3 data-number="2.9" class="anchored" data-anchor-id="output-linear-projection-softmax"><span class="header-section-number">2.9</span> Output Linear Projection &amp; Softmax</h3>
+<section id="output-linear-projection-softmax" class="level3" data-number="2.10">
+<h3 data-number="2.10" class="anchored" data-anchor-id="output-linear-projection-softmax"><span class="header-section-number">2.10</span> Output Linear Projection &amp; Softmax</h3>
 <p>在Transformer的Decoder中，最后一步是将Decoder的输出通过一个线性变换和Softmax函数转换为词汇表中的概率分布。这个过程可以看作是将Decoder的输出映射到词汇表中的每个词的概率。具体来说， <span id="eq-output-softmax"><span class="math display">\[\text{Output} = \text{Softmax}(xW + b)
-\tag{12}\]</span></span> 其中 <span class="math inline">\(W\)</span> 是线性变换的权重矩阵，<span class="math inline">\(b\)</span> 是偏置项。Softmax函数将线性变换的输出转换为概率分布，从而使得模型可以生成下一个词的概率分布。</p>
+\tag{14}\]</span></span> 其中 <span class="math inline">\(W\)</span> 是线性变换的权重矩阵，<span class="math inline">\(b\)</span> 是偏置项。Softmax函数将线性变换的输出转换为概率分布，从而使得模型可以生成下一个词的概率分布。</p>
 <p>在这个过程中，Transformer 的作者采用了一种 <strong>weight tying</strong> 的方法，将输入的词嵌入矩阵和输出的线性变换矩阵共享同一个权重矩阵。这种方法可以减少模型的参数量，从而提高模型的效率，并且在实践中效果也很好。具体来说，Transformer 的作者将输入的词嵌入矩阵和输出的线性变换矩阵共享同一个权重矩阵，这样可以减少模型的参数量，从而提高模型的效率。</p>
 </section>
-<section id="full-process" class="level3 page-columns page-full" data-number="2.10">
-<h3 data-number="2.10" class="anchored" data-anchor-id="full-process"><span class="header-section-number">2.10</span> Full Process</h3>
+<section id="full-process" class="level3 page-columns page-full" data-number="2.11">
+<h3 data-number="2.11" class="anchored" data-anchor-id="full-process"><span class="header-section-number">2.11</span> Full Process</h3>
 <div class="page-columns page-full">
 <div id="fig-full-transformer" class="quarto-layout-panel page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
@@ -697,8 +721,8 @@ Figure&nbsp;4: Illustation of Transformer Encoding and Decoding Process (Image S
 </div>
 <p>如图 <a href="#fig-full-transformer" class="quarto-xref">Figure&nbsp;4</a> 所示，Transformer的编码过程和解码过程是相似的。编码过程将输入的token转换为向量，然后通过多个Encoder Block进行编码，最后通过一个线性变换和Softmax函数转换为词汇表中的概率分布。解码过程则是将Encoder的输出与Decoder的输入进行交叉注意力计算，然后通过多个Decoder Block进行解码，最后通过一个线性变换和Softmax函数转换为词汇表中的概率分布。</p>
 </section>
-<section id="training-process" class="level3" data-number="2.11">
-<h3 data-number="2.11" class="anchored" data-anchor-id="training-process"><span class="header-section-number">2.11</span> Training Process</h3>
+<section id="training-process" class="level3" data-number="2.12">
+<h3 data-number="2.12" class="anchored" data-anchor-id="training-process"><span class="header-section-number">2.12</span> Training Process</h3>
 <p>接下来，我们探讨一下Transformer的训练过程。Transformer的训练过程与其他神经网络模型类似，主要包括以下几个步骤：</p>
 <ol type="1">
 <li><strong>数据预处理</strong>：将输入的文本数据转换为token，并进行分词和编码。通常使用Word Embedding将每个token转换为一个固定维度的向量。</li>
@@ -730,7 +754,7 @@ Figure&nbsp;4: Illustation of Transformer Encoding and Decoding Process (Image S
 </section>
 <section id="position-embedding" class="level3" data-number="3.2">
 <h3 data-number="3.2" class="anchored" data-anchor-id="position-embedding"><span class="header-section-number">3.2</span> Position Embedding</h3>
-<p>接下来，我们来实现Position Embedding <a href="#eq-position-encoding" class="quarto-xref">Equation&nbsp;3</a>。</p>
+<p>接下来，我们来实现Position Embedding <a href="#eq-position-encoding" class="quarto-xref">Equation&nbsp;4</a>。</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">class</span> PositionEmbedding(nn.Module):</span>
 <span id="cb2-2"><a href="#cb2-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, config):</span>
 <span id="cb2-3"><a href="#cb2-3"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
@@ -1039,8 +1063,6 @@ Important
             if (link.getAttribute("rel") === null) {
               link.setAttribute("rel", "noopener");
             }
-            // default icon
-            link.classList.add("external");
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {

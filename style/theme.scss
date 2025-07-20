@@ -35,3 +35,12 @@
   font-size: 1rem;
   color: inherit;
 }
+
+strong {
+  color: #56b8b6 !important; // 柔和珊瑚红（比 #da6373 更清新）
+  font-weight: bolder;
+}
+
+em {
+  color: #92d5d4 !important; // 粉白淡化，和 strong 区分但风格统一
+}

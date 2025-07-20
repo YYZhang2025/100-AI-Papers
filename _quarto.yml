@@ -45,7 +45,7 @@ format:
     css: ./style/style.css
 
     link-external-newwindow: true
-    link-external-icon: true
+    link-external-icon: false
 
     fontsize: 1.2em
     code-copy: true
