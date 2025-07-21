@@ -1,2 +1,5 @@
 author: "Yuyang Zhang"
 tbl-cap-location: "bottom"
+
+bibliography: ../references/zotero.bib
+biblio-style: "apa"

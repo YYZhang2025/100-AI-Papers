@@ -7,25 +7,21 @@ title: "01: Attention is All You Need"
 ## Preliminary
 在理解Transformer之前，我们需要先了解一些基本的概念。有基础的同学可以跳过这一节，直接看下一节的Transformer模型架构。
 
-### Dot Product Similarity（点积相似度）
+### Dot Product Similarity（点积相似度）{#sec-dot-product}
 
 给定两个向量 $\mathbf{q}, \mathbf{k} \in \mathbb{R}^d$, 它们的点积为:
 $$
 \text{score}(\mathbf{q}, \mathbf{k}) = \mathbf{q} \cdot \mathbf{k} = \sum_{i=1}^{d} q_i k_i
 $$ {#eq-dot-product}
-
 这个score用于测量两个向量的*相似度*, 数值越大，说明两个向量越相似
 
-### Softmax 函数
+### Softmax 函数 {#sec-softmax}
 
 给定向量 $\mathbf{x} = (x_1, x_2, \ldots, x_n)$，softmax 函数定义为:
 $$
 \text{softmax}(x_i) = \frac{e^{x_i}}{\sum_j e^{x_j}}
 $$ {#eq-softmax}
-
-softmax 函数将向量 $\mathbf{x}$ 转换为一个*概率分布*，所有元素的和为1。它常用于将模型的输出转换为概率分布。
-
-计算softmax 的时间复杂度为 $\mathcal{O}(n)$，其中 $n$ 是向量 $\mathbf{x}$ 的维度。
+softmax 函数将向量 $\mathbf{x}$ 转换为一个*概率分布*，所有元素的和为1。它常用于将模型的输出转换为概率分布。其中，计算softmax 的时间复杂度为 $\mathcal{O}(n)$，其中 $n$ 是向量 $\mathbf{x}$ 的维度。
 
 
 ### Matrix Multiplication
@@ -33,18 +29,15 @@ softmax 函数将向量 $\mathbf{x}$ 转换为一个*概率分布*，所有元�
 $$
 \mathbf{C} = \mathbf{A} \cdot \mathbf{B} \in \mathbb{R}^{m \times p}
 $$ {#eq-matrix-multiplication}
-
-矩阵乘法是线性代数中的基本运算，用于将两个矩阵相乘，得到一个新的矩阵。它在神经网络中被广泛使用，尤其是在计算注意力分数时。其中，Matrix Multiplication的时间复杂度为 $\mathcal{O}(mnp)$，其中 $m$ 是 $\mathbf{A}$ 的行数，$n$ 是 $\mathbf{A}$ 的列数，也是 $\mathbf{B}$ 的行数，$p$ 是 $\mathbf{B}$ 的列数。 
-
-Wikipedia 上有一个关于 [Matrix Multiplication](https://en.wikipedia.org/wiki/Computational_complexity_of_matrix_multiplication) 的详细介绍。
+矩阵乘法是线性代数中的基本运算，用于将两个矩阵相乘，得到一个新的矩阵。它在神经网络中被广泛使用，尤其是在计算注意力分数时。其中，Matrix Multiplication的时间复杂度为 $\mathcal{O}(mnp)$，其中 $m$ 是 $\mathbf{A}$ 的行数，$n$ 是 $\mathbf{A}$ 的列数，也是 $\mathbf{B}$ 的行数，$p$ 是 $\mathbf{B}$ 的列数。 Wikipedia 上有一个关于 [Matrix Multiplication Time Complexity](https://en.wikipedia.org/wiki/Computational_complexity_of_matrix_multiplication) 的详细介绍。
 
 ## Attention is All You Need
+在这个篇章中，我们将深入阅读这篇论文，首先，我们先来了解一下这篇论文的背景和主要贡献
 
-> “The dominant sequence transduction models are based on complex recurrent or convolutional neural networks … We propose a new simple network architecture, the Transformer, based **solely on attention mechanisms**, dispensing with recurrence and convolutions entirely.”
+> The dominant sequence transduction models are based on complex recurrent or convolutional neural networks … We propose a new simple network architecture, the Transformer, based **solely on attention mechanisms**, dispensing with recurrence and convolutions entirely.
 
 
-本篇论文提出：序列建模（Sequence Modeling）长期依赖 RNN/CNN，其计算受制于<u>时间步骤的串行性</u>，难以并行化，且<u>长距离依赖捕获效率低</u>。
-为了解决这个问题，作者提出了Transformer模型，完全基于<u>注意力机制</u>，去除了循环和卷积操作，从而实现了<u>全局信息交互</u>。利用多头注意力机制（Multi-Head Attention）+ 前馈网络 （Feed Forward Network）编码器-解码器均去除了循环/卷积，仅靠注意力实现全局信息交互。
+本篇论文提出：序列建模（Sequence Modeling）长期依赖 RNN/CNN，其计算受制于<u>时间步骤的串行性</u>，难以并行化，且<u>长距离依赖捕获效率低</u>。为了解决这个问题，作者提出了Transformer模型，完全基于<u>注意力机制</u>，去除了循环和卷积操作，从而实现了<u>全局信息交互</u>。利用多头注意力机制（Multi-Head Attention）+ 前馈网络 （Feed Forward Network）的编码器-解码器，去除了循环/卷积，仅靠注意力实现全局信息交互。
 除此之外，他们还设计了Scaled Dot-Product Attention 和 Multi Head Attention，来**降低数值尺度**的同时并行**学习多子空间表示**。
 
 以下是Transformer的整体架构图：
@@ -53,20 +46,22 @@ Wikipedia 上有一个关于 [Matrix Multiplication](https://en.wikipedia.org/wi
 
 如图 @fig-transformer-architecture 所示，Transformer是由：
 
-- Input Embedding
-- Position Embedding
-- Multi-Head Attention
-- Point-Wise Feed Forward Network
-- Layer Normalization
+- Input Embedding: @sec-input-embedding
+- Position Embedding: @sec-positional-encoding
+- Multi-Head Attention: @sec-multi-head-attention
+- Layer Normalization: @sec-layer-normalization
+- Point-Wise Feed Forward Network: @sec-point-wise-ffn
 
 这几个小模块来组成的，每个小模块组成一个Encoder Block，多个Encoder Block堆叠起来形成Encoder，Decoder Block也是类似的。接下来，我们会逐个介绍这些模块。
 
 
-### Input Embedding 
+### Input Embedding{#sec-input-embedding}
 Input Embedding是将输入的token转换为向量的过程。Transformer的输入是一个序列，序列中的每个词都被转换为一个向量。*这个向量可以是预训练的词向量，也可以是随机初始化的向量*。Transformer使用Word Embedding来将每个token转换为一个固定维度的向量。这在自然语言处理（NLP）中是一个常见的做法。
 
-### Positional Encoding
-Transformer 的另一个重要特点是它不使用循环神经网络（RNN）或卷积神经网络（CNN）来处理序列数据。这就导致了一个问题：Transformer无法捕捉到序列中词语的位置信息。为了解决这个问题，Transformer引入了位置编码（Position Encoding）。
+----------
+
+### Positional Encoding{#sec-positional-encoding}
+Transformer 的一个重要特点是它不使用循环神经网络（RNN）或卷积神经网络（CNN）来处理序列数据。这就导致了一个问题：Transformer无法捕捉到序列中词语的位置信息。为了解决这个问题，Transformer引入了位置编码（Position Encoding）。
 
 > Since our model contains no recurrence and no convolution, in order for the model to make use of the order of the sequence, we must inject some information about the relative or absolute position of the tokens in the sequence.
 
@@ -83,43 +78,72 @@ $$ {#eq-position-encoding}
 其中 $d_{\text{model}}$ 是位置编码的维度（与Word Embedding 的维度一样大）。位置编码的作用是为每个词提供一个唯一的位置信息，使得模型能够捕捉到词语在序列中的相对位置关系。
 
 
-### Multi-Head Attention
+:::{.column-page}
+::: {#fig-position-encoding layout="[[1,1], [1, 1]]"}
+
+![Position Encoding with max sequence length 100](./01-attention.assets/position-100.png){#fig-position-100}
+
+
+![Position Encoding with max sequence length 100](./01-attention.assets/position-200.png){#fig-position-200}
+
+![Position Encoding with max sequence length from 100 to 200](./01-attention.assets/positional_encoding.gif){#fig-position-max-len-gif}
+
+![Position Encoding with log base from 10,000 to 1,000](./01-attention.assets/position-logbase_encoding.gif){#fig-position-log-base-gif}
+
+Illustration of Position Encoding with different max sequence lengths, the horizontal red line represent the encoding at position 50. The encoding is consistent across different max sequence lengths, which allows the model to generalize to longer sequences.
+:::
+:::
+
+从 @fig-position-encoding 中可以看到，随着max sequence length的增加，位置编码的变化是连续的 @fig-position-max-len-gif 。并且在不同的max sequence length下，位置编码的变化是相同的， 图 @fig-position-100, @fig-position-200， 显示的是位置50在不同的max sequence length下的位置编码变化。可以看到，位置编码在不同的max sequence length下是相同的，这使得模型可以更好地泛化到更长的序列上。
+
+![Details of Position Encoding](./01-attention.assets/position-detail.png){#fig-position-detail}
+
+图 @fig-position-detail 展示了位置编码不同dimension之间的细节。相对于diminution(4, 5), dimension(6,7) 的随着位置变化更大。从图中我们可以看出：
+
+- 低 $i$（靠前的维度）—— 波长短，随位置 pos 变化得快 → 易区别相邻 token；
+- 高 $i$（靠后的维度）—— 波长长，随位置 pos 变化得慢 → 捕获全局位置信息。
+
+除此之外，位置编码还可以通过改变正弦和余弦函数的基数来实现不同的效果。比如，可以将基数从10000改为1000，这样可以使得位置编码的波长变短，从而使得模型更容易捕捉到相邻位置的信息。图 @fig-position-log-base-gif 展示了位置编码在不同的基数下的变化。
+
+----------
+
+### Multi-Head Attention {#sec-multi-head-attention}
 Multi-Head Attention是Transformer的核心模块。它的作用是将输入的向量进行多头注意力计算，从而捕捉到不同的语义信息。Attention 其实就是一个**加权求和**的过程，它可以看作是对输入向量的加权平均。其核心公式为：
 $$
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
 $$ {#eq-attention}
 
-其中 $Q$、$K$、$V$ 分别是查询（Query）、键（Key）和值（Value）矩阵，其中 $\sqrt{d_k}$ 是一个缩放因子，用来防止点积的值过大导致梯度消失。这个公式的含义是：首先计算查询和键的点积，然后通过Softmax函数将其转换为概率分布，最后用这个概率分布对值进行加权求和。
+其中 $Q$、$K$、$V$ 分别是查询（Query）、键（Key）和值（Value）矩阵，其中 $\sqrt{d_k}$ 是一个缩放因子，<u>用来防止点积的值过大导致梯度消失</u>。这个公式的含义是：首先计算查询和键的点积 (@sec-dot-product) ，然后通过Softmax函数 (@sec-softmax) 将其转换为概率分布，最后用这个概率分布对值进行加权求和。
 
 ::: {.callout-note}
-@eq-attention 是Attention的核心公式，它是Transformer的核心模块。理解这个公式是理解Transformer的关键。后续很多的创新和变体都是在这个公式的基础上进行的。
+@eq-attention 是Attention的核心公式，而Attention是Transformer的核心模块。理解这个公式是理解Transformer的关键。后续很多的创新比如，Linear Attention [@LinformerSelfAttentionLinear2020wang]，  Multi-head Latent Attention[@DeepSeekV2StrongEconomical2024deepseek-ai]  都是在这个公式的基础上进行改进。
 :::
 
-Multi-Head Attention 是Attention@eq-attention 的一个扩展，它将输入的向量分成多个子空间（head），然后在每个子空间上独立地计算注意力。最后，将所有子空间的输出拼接起来，得到最终的输出。Multi-Head Attention 的公式为：
+> Instead of performing a single attention function with dmodel-dimensional keys, values and queries, we found it beneficial to linearly project the queries, keys and values h times with different, learned linear projections to $d_k$, $d_k$ and $d_v$ dimensions, respectively.
+
+
+Multi-Head Attention 是Attention @eq-attention 的一个扩展，它将输入的向量分成多个子空间（head），然后在每个子空间上独立地计算注意力。最后，将所有子空间的输出拼接起来，得到最终的输出。Multi-Head Attention 的公式为：
 $$
 \begin{align*}
 \text{MultiHead}(Q, K, V) &= \text{Concat}(\text{head}_1, \ldots, \text{head}_h)W^O \\
-\text{head}_i &= \text{Attention}(QW_i^Q, KW_i^K, VW_i^V)
+\text{where}\ \text{head}_i &= \text{Attention}(QW_i^Q, KW_i^K, VW_i^V)
 \end{align*}    
 $$ {#eq-multi-head-attention}
 
-其中 $W_i^Q, W_i^K, W_i^V$ 是用于将输入向量投影到子空间的权重矩阵，$W^O$ 是用于将所有子空间的输出拼接起来的权重矩阵。Multi-Head Attention 的作用是通过多个子空间来捕捉不同的语义信息，从而提高模型的表达能力。
-
-> Instead of performing a single attention function with dmodel-dimensional keys, values and queries, we found it beneficial to linearly project the queries, keys and values h times with different, learned linear projections to dk, dk and dv dimensions, respectively.
-
-
-尽管增加了Heads会增加计算量，但由于每个Head的维度较小，因此可以并行计算，从而提高了模型的效率。Multi-Head Attention 使得模型能够同时关注输入序列中的不同部分，从而捕捉到更丰富的语义信息。
-
+其中 $W_i^Q, W_i^K \in \mathbb{R}^{d_\text{model} \times d_k}, W_i^V \in \mathbb{R}^{d_\text{model} \times d_v}$ 是用于将输入向量投影到子空间的权重矩阵，$W^O \in \mathbb{R}^{hd_v \times d_\text{model} }$ 是用于将所有子空间的输出拼接起来的权重矩阵。Multi-Head Attention 的作用是<u>通过多个子空间来捕捉不同的语义信息，从而提高模型的表达能力</u>。
 
 > Due to the reduced dimension of each head, the total computational cost is similar to that of single-head attention with full dimensionality.
 
-### Time Complexity of Multi-Head Attention
-我们假设input的长度为 $n$，每个head的维度为 $d_k$，则Multi-Head Attention的时间复杂度为 $\mathcal{O}(n^2 d_k)$ @eq-matrix-multiplication。
+文章中提到，尽管增加了Heads会增加计算量，但由于每个Head的维度较小，并且可以并行计算，从而提高了模型的效率。
 
-接下来是Softmax的计算，Softmax的时间复杂度为 $\mathcal{O}(n)$。对于每个score matrix $QK^T \in \mathbf{R}^{n \times n}$，的每一行，我们需要计算 softmax，这需要 $n$ 次计算。因此，Softmax的时间复杂度为 $\mathcal{O}(n^2)$。
+
+#### Time Complexity of Multi-Head Attention
+在继续了解别的component之前，我们先来分析一下Multi-Head Attention的时间复杂度。假设input的长度为 $n$，每个head的维度为 $d_k$，那么计算 $QK^T$ 的时间复杂度为 $\mathcal{O}(n^2 d_k)$ (@eq-matrix-multiplication)。
+
+接下来是Softmax的计算，Softmax的时间复杂度为 $\mathcal{O}(n)$(@sec-softmax)。对于每个score matrix $QK^T \in \mathbb{R}^{n \times n}$ 的每一行，我们需要计算 softmax，这需要 $n$ 次计算。因此，Softmax的时间复杂度为 $\mathcal{O}(n^2)$。
 
 之后是对于value的加权，计算复杂度也是 $\mathcal{O}(n^2d)$.
-所以总的时间复杂度为：$\mathcal{O}(n^2)$, 随着 $n$ 的增加，计算复杂度会Polynomial 增长。具体的计算复杂度如下表所示：
+所以总的时间复杂度为：$\mathcal{O}(n^2d)$, 随着 $n$ 的增加，计算复杂度会Polynomial 增长。具体的计算复杂度如下表所示：
 $$
 \begin{array}{|l|l|}
 \hline
@@ -134,59 +158,83 @@ QK^\top & \mathcal{O}(n^2 d) \\
 \end{array}
 $$ {#eq-multi-head-attention-complexity}
 
-### Causal Attention
-Causal Attention（因果注意力）是Transformer中的一个重要概念，它的作用是防止模型在训练时看到未来的信息，从而保证模型的自回归特性。具体来说，Causal Attention会在计算注意力时，将未来的信息屏蔽掉，从而使得模型只能看到当前和过去的信息。这样可以保证模型在训练时不会看到未来的信息，从而保证模型的自回归特性。 Causal Attention通常作用在Decoder 模块中。
-![Illustration of Causal Attention](01-attention.assets/causal-attention.png){#fig-causal-attention}
+#### Causal Attention
+Causal Attention（因果注意力）是Transformer中的一个重要概念，它的作用是<u>防止模型在训练时看到未来的信息，从而保证模型的自回归特性</u>。具体来说，Causal Attention会在计算注意力时，将未来的信息屏蔽掉，从而使得模型只能看到当前和过去的信息。这样可以保证模型在训练时不会看到未来的信息，从而保证模型的自回归特性。 Causal Attention通常作用在Decoder 模块中。
+
+![Example of Causal Attention](01-attention.assets/causal-attention.png){#fig-causal-attention}
+
 Causal Attention的公式为：
 $$
 \text{CausalAttention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}} + M\right)V
 $$ {#eq-causal-attention}   
 
-在这个公式中，$M$ 是一个掩码矩阵（mask matrix），它的作用是将未来的信息屏蔽掉。具体来说，$M$ 是一个上三角矩阵，它的对角线以下的元素为0，对角线以上的元素为负无穷大（-inf）。这样在计算Softmax时，对角线以上的元素会被屏蔽掉，从而保证模型只能看到当前和过去的信息。
+在这个公式中，$M$ 是一个掩码矩阵（mask matrix），它的作用是将未来的信息屏蔽掉。$M$ 是一个上三角矩阵，它的对角线以下的元素为0，对角线以上的元素为$-\infty$。这样在计算Softmax时，对角线以上的元素会被屏蔽掉，从而保证模型只能看到当前和过去的信息。
 
-### Cross Attention
-Cross Attention（交叉注意力）是Transformer中的另一个重要概念，它的作用是将Encoder的输出与Decoder的输入进行交叉注意力计算，从而使得Decoder能够利用Encoder的输出信息。具体来说，Cross Attention会将Encoder的输出作为键（Key）和值（Value），将Decoder的输入作为查询（Query），然后计算注意力。
+#### Cross Attention
+Cross Attention（交叉注意力）作用是将Encoder的输出与Decoder的输入进行交叉注意力计算，从而使得Decoder能够利用Encoder的输出信息。具体来说，Cross Attention会将Encoder的输出作为键（Key）和值（Value），将Decoder的输入作为查询（Query），然后计算注意力。
 Cross Attention的公式与Attention @eq-attention 类似，只不过将Encoder的输出作为键和值，Decoder的输入作为查询
 
+:::{.callout-note}
+Cross Attention 除了可以应用在text中，可以应用在不同的modality之间，比如图像和文本之间的交叉注意力。比如在视觉问答（Visual Question Answering）任务中，Cross Attention可以将图像特征与问题文本进行交叉注意力计算，从而使得模型能够利用图像信息来回答问题。
+:::
 
-
-### Layer Normalization
+### Layer Normalization {#sec-layer-normalization}
 Layer Normalization是Transformer中的一个重要模块，它可以帮助模型更快地收敛。Layer Normalization的作用是对每个位置的向量进行归一化处理，从而使得模型在训练时更加稳定。具体来说，Layer Normalization会对**每个位置的向量(feature)**进行均值和方差的归一化处理，使得每个位置的向量都具有相同的分布。这样可以使得模型在训练时更加稳定，从而加快模型的收敛速度。
 
 ![Illustration of Layer Normalization](01-attention.assets/layer-norm.png){#fig-layer-normalization}
 
 Layer Normalization的公式为：
 $$
-\text{LayerNorm}(x) = \frac{x - \mu}{\sigma}
+\text{LayerNorm}(\mathrm{x}) = \frac{\mathrm{x} - \mu}{\sigma + \epsilon} \cdot \gamma + \beta
 $$ {#eq-layer-normalization}
+其中 $\mu$ 是向量 $\mathrm{x}$ 的均值，$\sigma$ 是向量 $\mathrm{x}$ 的标准差。
 
-其中 $\mu$ 是向量 $x$ 的均值，$\sigma$ 是向量 $x$ 的标准差。Layer Normalization的作用是对每个位置的向量进行归一化处理，从而使得模型在训练时更加稳定。
-对于一个batch的输入，Layer Normalization会对每个位置的向量进行归一化处理，而不是对整个batch进行归一化处理。这使得Layer Normalization可以更好地适应不同长度的序列，从而提高模型的性能。具体来说, $x \in \mathbb{R}^{B \times H \times S \times d_v}$我们对每个位置的向量也就是 $S$ 维度进行归一化处理，而不是对整个batch进行归一化处理。这样可以使得模型在训练时更加稳定，从而加快模型的收敛速度。
+对于一个batch的输入，Layer Normalization会对每个位置的向量进行归一化处理，而不是对整个batch进行归一化处理。这使得Layer Normalization可以更好地适应不同长度的序列，从而提高模型的性能。具体来说, $x \in \mathbb{R}^{B \times H \times S \times d_v}$我们对每个位置的向量也就是 $d_v$ 维度进行归一化处理，而不是对整个batch进行归一化处理。
+
+----------
 
 
 ### Residual Connection 
-
-$$
-\text{Output} = \mathrm{LayerNorm}\bigl(\mathbf{x} + \mathrm{Sublayer}(\mathbf{x})\bigr)
-$$ {#eq-residual-connection}
+Residual Connection（残差连接）作用是将输入的向量与子层的输出相加，从而使得模型可以更容易地学习到Identity Mapping。Residual Connection的如图所示：
 
 ![Illustration of Residual Connection](01-attention.assets/residuakl-connection.png){#fig-residual-connection}
 
-学习Residual Connection的目的是为了让模型更容易学习到Identity Mapping。具体来说，Residual Connection会将输入的向量与子层的输出相加，从而使得模型可以更容易地学习到Identity Mapping。这样可以使得模型在训练时更加稳定，从而加快模型的收敛速度。在优化的过程中，让Gradient Information更容易地传递到前面的层，从而使得模型更容易学习到Identity Mapping。Residual Connection的公式为：
-$$
-\frac{\partial \mathcal L}{\partial \mathbf{x}} = \underbrace{\frac{\partial \mathcal L}{\partial \mathbf{y}}}_{\text{straight path}} + \underbrace{\frac{\partial \mathcal L}{\partial \mathbf{y}}\frac{\partial\,\mathrm{Sublayer}(\mathbf{x})}{\partial \mathbf{x}}}_{\text{through the sub-layer}} 
-$$ {#eq-residual-connection-gradient}
 
-::: {.callout-note}
-在后续的研究中表示，Normalization的位置可以放在Residual Connection的前面或者后面，效果差不多。Transformer论文中是放在后面的（Post-Normalization）@eq-residual-connection 。但在后续的研究中，很多模型（比如BERT）将Normalization放在Residual Connection的前面（Pre-Normalization）。
+Residual Connection在Transformer的应用公式为：
+$$
+\mathbf{y} = \text{LayerNorm}(\mathbf{x} + \mathrm{Sublayer}(\mathbf{x}))
+$$ {#eq-residual-connection}
+
+在训练时，残差连接可以为梯度提供一条“捷径”，即梯度可以不经过子层复杂的非线性变换，直接传回前面层的输入。这能有效缓解梯度消失问题。
+
+
+
+$$
+\begin{align}
+\frac{\partial \mathcal{L}}{\partial \mathbf{x}} 
+&= \frac{\partial \mathcal{L}}{\partial \mathbf{y}} \cdot \frac{\partial \mathbf{y}}{\partial \mathbf{x}} \\
+&= \frac{\partial \mathcal{L}}{\partial \mathbf{y}} \cdot \left( \mathbf{I} + \frac{\partial \mathrm{Sublayer}(\mathbf{x})}{\partial \mathbf{x}} \right) \\
+&= \underbrace{\frac{\partial \mathcal{L}}{\partial \mathbf{y}}}_{\text{straight path}} + 
+\underbrace{\frac{\partial \mathcal{L}}{\partial \mathbf{y}} \cdot 
+\frac{\partial\,\mathrm{Sublayer}(\mathbf{x})}{\partial \mathbf{x}}}_{\text{through the sub-layer}}
+\end{align}
+$$ {#eq-residual-connection-gradient}
+其中， $\mathcal{L}$ 是损失函数。我们可以看到由于存在第一项，哪怕子层梯度接近 0，Gradient 的信息也不会完全丢失。
+
+::: {.callout-note title="Pre-Normalization vs Post-Normalization"}
+Transformer论文中, Normalization的位置是放在Residual Connection的后面（Post-Normalization）@eq-residual-connection 。但在后续的研究中，很多模型（比如BERT）将Normalization放在Residual Connection的前面（Pre-Normalization）。
 $$
 \text{Output} = \mathrm{Sublayer}(\mathbf{x}) + \mathrm{LayerNorm}(\mathbf{x})
 $$ {#eq-pre-normalization}
 :::
 
-### Point-Wise Feed Forward Network
-Point-Wise Feed Forward Network是Transformer中的一个重要模块，它的作用是对每个位置的向量进行非线性变换。具体来说，Point-Wise Feed Forward Network由两个线性变换和一个ReLU激活函数组成。它的作用是对每个位置的向量进行非线性变换，从而使得模型可以更好地捕捉到输入序列中的不同语义信息。
-Point-Wise Feed Forward Network的公式为：
+
+### Point-Wise Feed Forward Network {#sec-point-wise-ffn}
+
+> In addition to attention sub-layers, each of the layers in our encoder and decoder contains a fully connected feed-forward network, which is applied to each position separately and identically.
+
+
+Point-Wise Feed Forward Network作用是对每个位置的向量进行非线性变换, 其公式为：
 $$
 \text{FFN}(x) = \max(0, xW_1 + b_1)W_2 + b_2
 $$ {#eq-point-wise-ffn}
@@ -198,12 +246,16 @@ $$ {#eq-point-wise-ffn}
 在Transformer的Decoder中，最后一步是将Decoder的输出通过一个线性变换和Softmax函数转换为词汇表中的概率分布。这个过程可以看作是将Decoder的输出映射到词汇表中的每个词的概率。具体来说，
 $$\text{Output} = \text{Softmax}(xW + b)
 $$ {#eq-output-softmax}
-其中 $W$ 是线性变换的权重矩阵，$b$ 是偏置项。Softmax函数将线性变换的输出转换为概率分布，从而使得模型可以生成下一个词的概率分布。
+其中 $W \in \mathbb{R} ^ {d_\text{model} \times vocab}$ 是线性变换的权重矩阵，$b$ 是偏置项。Softmax函数将线性变换的输出转换为概率分布，从而使得模型可以生成下一个词的概率分布。
 
-在这个过程中，Transformer 的作者采用了一种 **weight tying** 的方法，将输入的词嵌入矩阵和输出的线性变换矩阵共享同一个权重矩阵。这种方法可以减少模型的参数量，从而提高模型的效率，并且在实践中效果也很好。具体来说，Transformer 的作者将输入的词嵌入矩阵和输出的线性变换矩阵共享同一个权重矩阵，这样可以减少模型的参数量，从而提高模型的效率。
+在这个过程中，Transformer 的作者采用了一种 **weight tying**[@UsingOutputEmbedding2017press] 的方法，将输入的词嵌入矩阵和输出的线性变换矩阵共享同一个权重矩阵。这种方法可以减少模型的参数量，从而提高模型的效率，并且在实践中效果也很好。具体来说，Transformer 的作者将输入的词嵌入矩阵和输出的线性变换矩阵共享同一个权重矩阵，这样可以减少模型的参数量，从而提高模型的效率。
 
 
-### Full Process
+### Full Model 
+Transformer的完整模型架构如图 @fig-transformer-architecture 所示。Transformer由多个Encoder Block和Decoder Block组成，每个Encoder Block和Decoder Block都包含了前面介绍的模块。Encoder Block和Decoder Block的结构是相似的，都是由Multi-Head Attention、Point-Wise Feed Forward Network、Layer Normalization和Residual Connection组成的。
+
+下图是整个Transformer的编码和解码过程的示意图：
+
 :::{.column-page}
 ::: {#fig-full-transformer layout-ncol=2}
 ![Transformer Encoding Process](./01-attention.assets/transformer-encoding.gif){#fig-transformer-encoding}
@@ -226,10 +278,10 @@ Illustation of Transformer Encoding and Decoding Process (Image Source: [The Ill
 4. **计算损失**：使用交叉熵损失函数（Cross-Entropy Loss）计算模型的输出与真实标签之间的差异。交叉熵损失函数是一个常用的分类损失函数，它可以衡量模型的输出概率分布与真实标签之间的差异。
 5. **反向传播**：通过计算损失函数对模型参数的梯度，使用梯度下降算法（如Adam优化器）更新模型的参数。梯度下降算法是一种常用的优化算法，它可以通过计算损失函数对模型参数的梯度来更新模型的参数，从而使得模型的输出更接近真实标签
 
-具体的实现过程，我们将在接下来的PyTorch实现中详细介绍。
+具体的实现过程，我们将在接下来的PyTorch实现中详细介绍。包括Label Smoothing、Adam、Masking等细节处理。
 
 ## PyTorch 实现
-接下来，我们叫利用PyTorch来实现Transformer的模型架构。我们采用Bottom-Up的方法，先实现Word Embedding， 接着是Position Embedding，接着实现我们的重点，即Multi-Head-Attention，再次之后，我们会实现 Point-Wise Feed Forward Network。最后将这几个模块组合起来，实现Transformer的Encoder 和 Decoder。准备好了吗？让我们开始吧！
+接下来，我们利用PyTorch来实现Transformer的模型架构。我们采用Bottom-Up的方法，先实现Word Embedding， 是Position Embedding，然后实现我们的重点，即Multi-Head-Attention，再次之后，我们会实现 Point-Wise Feed Forward Network。最后将这几个模块组合起来，实现Transformer的Encoder 和 Decoder。准备好了吗？让我们开始吧！
 
 
 ### Word Embedding
@@ -237,15 +289,18 @@ Word Embedding是将词语转换为向量的过程。在PyTorch 中的实现非�
 
 ```python
 class WordEmbedding(nn.Module):
-    def __init__(self, config):
+    def __init__(self, config: ModelConfig, is_tgt: bool = False):
         super().__init__()
 
-        self.embedding = nn.Embedding(config.vocab_size, config.d_model)
-    
-    def _init_weight(self):
-        nn.init.trunc_normal_(self.embedding.weight, mean = 0, std=0.02, a=-3, b=3)
-    
+        if is_tgt:
+            self.embedding = nn.Embedding(config.tgt_vocab_size, config.d_model)
+        else:
+            self.embedding = nn.Embedding(config.src_vocab_size, config.d_model)
+
     def forward(self, x):
+        """
+        x: (batch_size, seq_len)
+        """
         return self.embedding(x)    
 ```
 
@@ -255,30 +310,49 @@ class WordEmbedding(nn.Module):
 
 接下来，我们来实现Position Embedding @eq-position-encoding。 
 ```python
-class PositionEmbedding(nn.Module):
-    def __init__(self, config):
+class PositionalEmbedding(nn.Module):
+    def __init__(self, config: ModelConfig):
         super().__init__()
 
-        self.seq_len = config.seq_len
-        self.d_model = config.d_model
+        pos_index = torch.arange(config.max_seq).unsqueeze(1)  # (max_seq, 1)
 
+        div_term = torch.exp(
+            torch.arange(0, config.d_model, 2) * -(math.log(10000.0) / config.d_model)
+        )
+
+        pe = torch.zeros(config.max_seq, config.d_model)  # (max_seq, d_model)
+        pe[:, 0::2] = torch.sin(pos_index * div_term)
+        pe[:, 1::2] = torch.cos(pos_index * div_term)
+
+        pe = pe.unsqueeze(0)  # (1, max_seq, d_model)
+
+        pe.requires_grad = False
+        self.register_buffer("pe", pe)
+
+    def forward(self, x):
+        """
+        x: (batch_size, seq_len, d_model)
+        """
+        seq_len = x.size(1)
+        return self.pe[:, :seq_len, :]  # (1, seq_len, d_model)
 ```
 
 
 有了Word Embedding 和 Position Embedding，我们就可以将输入的token转换为向量了。我们需要接下来需要做的就是，将这两个向量相加，得到最终的输入向量。
 ```python
-class InputEmbedding(nn.Module):
-    def __init__(self, config):
+class Embedding(nn.Module):
+    def __init__(self, config: ModelConfig, is_tgt: bool = False):
         super().__init__()
+        self.word_embedding = WordEmbedding(config, is_tgt)
+        self.positional_embedding = PositionalEmbedding(config)
 
-        self.word_embedding = WordEmbedding(config)
-        self.position_embedding = PositionEmbedding(config)
-    
     def forward(self, x):
+        """
+        x: (batch_size, seq_len)
+        """
         word_emb = self.word_embedding(x)
-        pos_emb = self.position_embedding(x)
-        
-        return word_emb + pos_emb
+        pos_emb = self.positional_embedding(word_emb)
+        return word_emb + pos_emb  # (batch_size, seq_len, d_model)
 ```
 
 
@@ -286,15 +360,17 @@ class InputEmbedding(nn.Module):
 我们先跳过Multi Head Attention，先实现Feed Forward Network。Feed Forward Network是Transformer中的一个重要模块，它的作用是对每个位置的向量进行非线性变换。具体来说，Feed Forward Network由两个线性变换和一个ReLU激活函数组成。
 
 ```python
-class FeedForwardNetwork(nn.Module):
-    def __init__(self, config):
+class FFN(nn.Module):
+    def __init__(self, config: ModelConfig):
         super().__init__()
 
-        self.linear1 = nn.Linear(config.d_model, config.d_ff)
-        self.relu = nn.ReLU()
-        self.linear2 = nn.Linear(config.d_ff, config.d_model)
+        self.ln1 = nn.Linear(config.d_model, config.d_ff, bias=True)
+        self.ln2 = nn.Linear(config.d_ff, config.d_model, bias=True)
+
     def forward(self, x):
-        return self.linear2(self.relu(self.linear1(x)))
+        x = F.relu(self.ln1(x))  # Apply ReLU activation
+        x = self.ln2(x)  # Linear transformation
+        return x  # (batch_size, seq_len, d_model)
 ``` 
 
 ### Layer Normalization
@@ -303,17 +379,34 @@ class FeedForwardNetwork(nn.Module):
 
 ```python
 class LayerNormalization(nn.Module):
-    def __init__(self, in_features, eps=1e-6):
+    def __init__(self, config: ModelConfig):
         super().__init__()
-        self.eps = eps
-        self.weight = nn.Parameter(torch.ones(in_features))
-        self.bias = nn.Parameter(torch.zeros(in_features))
+
+        self.eps = config.eps
+
+        self.gamma = nn.Parameter(torch.ones(config.d_model))  # (d_model,)
+        self.beta = nn.Parameter(torch.zeros(config.d_model))  # (d_model,)
+
+    def _compute_mean_std(self, x):
+        """
+        Compute mean and standard deviation for the input tensor x
+        On the last dimension (features)
+        x: (batch_size, seq_len, d_model)
+        Output:
+            mean: (batch_size, seq_len, 1)
+            std: (batch_size, seq_len, 1)
+        """
+        mean = x.mean(dim=-1, keepdim=True)
+        std = x.std(dim=-1, keepdim=True)
+        return mean, std
 
     def forward(self, x):
-        mean = x.mean(dim=-1, keepdim=True)
-        var = x.var(dim=-1, keepdim=True, unbiased=False)
-        normalized_x = (x - mean) / torch.sqrt(var + self.eps)
-        return self.weight * normalized_x + self.bias
+        mean, std = self._compute_mean_std(x)
+
+        # normalize x: (batch_size, seq_len, d_model)
+        normalized_x = (x - mean) / (std + self.eps)  # Avoid division by zero
+
+        return normalized_x * self.gamma + self.beta  # (batch_size, seq_len, d_model)
 ```
 
 
@@ -330,16 +423,82 @@ Multi Head Attention是Transformer的核心模块。它的作用是将输入的�
 
 
 ```python
+def scaled_dot_product_attention(q, k, v, mask=None):
+    """
+    Scaled Dot-Product Attention
+    q: (batch_size, num_heads, seq_len_q, d_k)
+    k: (batch_size, num_heads, seq_len_k, d_k)
+    v: (batch_size, num_heads, seq_len_v, d_v)
+    mask: (batch_size, 1, seq_len_q, seq_len_k) or None
+    """
+    d_k = k.shape[-1]
+
+    scores = einops.einsum(
+        q,
+        k,
+        "batch heads seq_len_q d_k, batch heads seq_len_k d_k -> batch heads seq_len_q seq_len_k",
+    )
+
+    scores = scores / math.sqrt(d_k)  # Scale the scores
+    scores = F.softmax(scores, dim=-1)  # Apply softmax to get attention weights
+
+    if mask is not None:
+        scores = scores.masked_fill(mask, float("-inf"))  # Apply mask if provided
+
+    output = einops.einsum(
+        scores,
+        v,
+        "batch heads seq_len_q seq_len_k, batch heads seq_len_k d_v -> batch heads seq_len_q d_v",
+    )
+
+    return output
+```
+
+```python
 class MultiHeadAttention(nn.Module):
-    def __init__(self, config):
+    def __init__(self, config: ModelConfig):
         super().__init__()
 
-        assert config.d_model % config.num_heads == 0, "d_model must be divisible by num_heads"
-        self.head_dim = config.d_model // config.num_heads
+        assert (
+            config.d_model % config.num_heads == 0
+        ), "d_model must be divisible by num_heads"
+        self.d_k = config.d_model // config.num_heads  # Dimension of each head
+        self.num_heads = config.num_heads
 
-        self.qkv_proj = nn.Linear(config.d_model, config.d_model * 3)
-        self.out_proj = nn.Linear(config.d_model, config.d_model)
+        self.qkv_proj = nn.Linear(
+            config.d_model, config.d_model * 3, bias=True
+        )  # (d_model, d_model * 3)
 
+        self.out_proj = nn.Linear(config.d_model, config.d_model, bias=True)
+
+    def forward(self, x, mask=None):
+        """
+        x: (batch_size, seq_len, d_model)
+        mask: (batch_size, 1, seq_len_q, seq_len_k) or None
+        """
+        batch_size, seq_len, _ = x.size()
+
+        q, k, v = map(
+            lambda t: einops.rearrange(
+                t,
+                "batch seq_len (heads d_k) -> batch heads seq_len d_k",
+                heads=self.num_heads,
+            ),
+            self.qkv_proj(x).chunk(3, dim=-1),
+        )  # (batch, num_heads, seq_len, d_k)
+
+        # Compute attention
+        attn_output = scaled_dot_product_attention(q, k, v, mask)
+
+        # Rearrange back to (batch_size, seq_len, d_model)
+        attn_output = einops.rearrange(
+            attn_output,
+            "batch heads seq_len d_v -> batch seq_len (heads d_v)",
+            heads=self.num_heads,
+        )
+
+        output = self.out_proj(attn_output)  # (batch_size, seq_len, d_model)
+        return output  # (batch_size, seq_len, d_model)
 ```
 
 
