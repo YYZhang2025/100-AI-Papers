@@ -1,0 +1,29 @@
+---
+title: "02: An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale"
+---
+
+在了解了什么是Transformer之后，我们来看看如何将Transformer应用于Computer Vision。Vision Transformer（ViT）是一个将Transformer架构应用于图像分类的模型。它的核心思想是将图像划分为小块（patches），然后将这些小块视为序列数据，类似于处理文本数据。
+
+
+:::{#fig-vision-transformer }
+![](./02-vision-transformer.assets/vit.gif)
+
+
+Vision Transformer Architecture (Image Source: [The Illustrated Vision Transformer](https://jalammar.github.io/illustrated-vision-transformer/))
+:::
+
+## Patchifying Images
+
+:::{.column-page}
+::: {#fig-illustrate-patchify layout-ncol=2}
+![Image before patching](./02-vision-transformer.assets/before-patch.png){#fig-before-patchify}
+
+![Image after patching](./02-vision-transformer.assets/after-patch.png){#fig-after-patchify}
+
+Illustration of Patchifying Images with image size 256x256 and patch size 16x16
+:::
+:::
+
+
+
+Other content
