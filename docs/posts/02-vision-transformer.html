@@ -21,7 +21,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -75,17 +130,6 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <link href="https://fonts.cdnfonts.com/css/cmu-sans-serif" rel="stylesheet">
 <style>
-div.callout-QA.callout {
-  border-left-color: #e7f3ff;
-}
-div.callout-QA.callout-style-default > .callout-header {
-  background-color: rgba(231, 243, 255, 0.13);
-}
-div.callout-QA .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-QA.callout-style-default .callout-icon::before, div.callout-QA.callout-titled .callout-icon::before {
-  content: '🗨️';
-  background-image: none;
-}
 div.callout-thumbs-up.callout {
   border-left-color: #008000;
 }
@@ -99,8 +143,48 @@ div.callout-thumbs-up.callout-style-default .callout-icon::before, div.callout-t
   content: '\f164' !important;
   background-image: none;
 }
+div.callout-QA.callout {
+  border-left-color: #e7f3ff;
+}
+div.callout-QA.callout-style-default > .callout-header {
+  background-color: rgba(231, 243, 255, 0.13);
+}
+div.callout-QA .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-QA.callout-style-default .callout-icon::before, div.callout-QA.callout-titled .callout-icon::before {
+  content: '🗨️';
+  background-image: none;
+}
 </style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../style/style.css">
 <meta property="og:title" content="02: An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale – 100 Papers with Codes">
@@ -357,7 +441,30 @@ div.callout-thumbs-up.callout-style-default .callout-icon::before, div.callout-t
     <h2 id="toc-title">Table of Contents</h2>
    
   <ul>
-  <li><a href="#patchifying-images" id="toc-patchifying-images" class="nav-link active" data-scroll-target="#patchifying-images"><span class="header-section-number">1</span> Patchifying Images</a></li>
+  <li><a href="#sec-vision-transformer-arch" id="toc-sec-vision-transformer-arch" class="nav-link active" data-scroll-target="#sec-vision-transformer-arch"><span class="header-section-number">1</span> Vision Transformer Architecture</a>
+  <ul>
+  <li><a href="#sec-patchify" id="toc-sec-patchify" class="nav-link" data-scroll-target="#sec-patchify"><span class="header-section-number">1.1</span> Patchifying Image</a></li>
+  <li><a href="#sec-learnable-position-embeddings" id="toc-sec-learnable-position-embeddings" class="nav-link" data-scroll-target="#sec-learnable-position-embeddings"><span class="header-section-number">1.2</span> Learnable Position Embeddings</a>
+  <ul class="collapse">
+  <li><a href="#sec-cls-token" id="toc-sec-cls-token" class="nav-link" data-scroll-target="#sec-cls-token"><span class="header-section-number">1.2.1</span> CLS Token</a></li>
+  </ul></li>
+  <li><a href="#sec-transformer-encoder" id="toc-sec-transformer-encoder" class="nav-link" data-scroll-target="#sec-transformer-encoder"><span class="header-section-number">1.3</span> Transformer Encoder</a></li>
+  <li><a href="#sec-classification-head" id="toc-sec-classification-head" class="nav-link" data-scroll-target="#sec-classification-head"><span class="header-section-number">1.4</span> Classification Head</a></li>
+  <li><a href="#vit-summary" id="toc-vit-summary" class="nav-link" data-scroll-target="#vit-summary"><span class="header-section-number">1.5</span> ViT Summary</a></li>
+  </ul></li>
+  <li><a href="#sec-pytorch-implementation" id="toc-sec-pytorch-implementation" class="nav-link" data-scroll-target="#sec-pytorch-implementation"><span class="header-section-number">2</span> PyTorch Implementation</a>
+  <ul>
+  <li><a href="#patchify" id="toc-patchify" class="nav-link" data-scroll-target="#patchify"><span class="header-section-number">2.1</span> Patchify</a></li>
+  <li><a href="#learnable-position-embeddings" id="toc-learnable-position-embeddings" class="nav-link" data-scroll-target="#learnable-position-embeddings"><span class="header-section-number">2.2</span> Learnable Position Embeddings</a></li>
+  <li><a href="#transformer-encoder" id="toc-transformer-encoder" class="nav-link" data-scroll-target="#transformer-encoder"><span class="header-section-number">2.3</span> Transformer Encoder</a>
+  <ul class="collapse">
+  <li><a href="#feed-forward-network" id="toc-feed-forward-network" class="nav-link" data-scroll-target="#feed-forward-network"><span class="header-section-number">2.3.1</span> Feed-Forward Network</a></li>
+  <li><a href="#pre-normalization" id="toc-pre-normalization" class="nav-link" data-scroll-target="#pre-normalization"><span class="header-section-number">2.3.2</span> Pre-Normalization</a></li>
+  </ul></li>
+  <li><a href="#classification-head" id="toc-classification-head" class="nav-link" data-scroll-target="#classification-head"><span class="header-section-number">2.4</span> Classification Head</a></li>
+  <li><a href="#vit-model" id="toc-vit-model" class="nav-link" data-scroll-target="#vit-model"><span class="header-section-number">2.5</span> ViT Model</a></li>
+  <li><a href="#训练集" id="toc-训练集" class="nav-link" data-scroll-target="#训练集"><span class="header-section-number">2.6</span> 训练集</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -390,19 +497,57 @@ div.callout-thumbs-up.callout-style-default .callout-icon::before, div.callout-t
 </header>
 
 
-<p>在了解了什么是Transformer之后，我们来看看如何将Transformer应用于Computer Vision。Vision Transformer（ViT）是一个将Transformer架构应用于图像分类的模型。它的核心思想是将图像划分为小块（patches），然后将这些小块视为序列数据，类似于处理文本数据。</p>
+<p>在了解了什么是<a href="https://yuyang.info/100-AI-Papers/posts/01-transformer.html">Transformer</a>之后，我们来看看如何将Transformer应用于Computer Vision。Vision Transformer（ViT）是一个将Transformer架构应用于<strong>图像分类</strong>的模型。它的核心思想是<u>将图像划分为小块（patches），然后将这些小块视为序列数据，类似于处理文本数据</u>。</p>
+<p>以下Vision Transformer的主要贡献：</p>
+<ol type="1">
+<li>首次将 Transformer 成功应用于图像识别任务，表明卷积并不是唯一的选择。</li>
+<li>证明了大规模预训练（如 JFT-300M）对 ViT 表现至关重要，没有强归纳偏置（inductive bias）时模型更依赖数据。</li>
+<li>在多个图像分类基准（如 ImageNet）上达到了 SOTA 表现，优于同参数规模的 ResNet。</li>
+</ol>
+<p>接下来，我们将详细介绍 Vision Transformer 的架构和实现细节。</p>
+<section id="sec-vision-transformer-arch" class="level2 page-columns page-full" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="sec-vision-transformer-arch"><span class="header-section-number">1</span> Vision Transformer Architecture</h2>
 <div id="fig-vision-transformer" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-vision-transformer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./02-vision-transformer.assets/vit.gif" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vision-transformer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Vision Transformer Architecture (Image Source: <a href="https://jalammar.github.io/illustrated-vision-transformer/">The Illustrated Vision Transformer</a>)
+Figure&nbsp;1: Vision Transformer Architecture (Image Source: <a href="https://github.com/lucidrains/vit-pytorch">lucidrains</a>)
 </figcaption>
 </figure>
 </div>
-<section id="patchifying-images" class="level2 page-columns page-full" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="patchifying-images"><span class="header-section-number">1</span> Patchifying Images</h2>
+<p>Vision Transformer 的模型， 如 <a href="#fig-vision-transformer" class="quarto-xref">Figure&nbsp;1</a> 所示，主要包括以下几个步骤：</p>
+<ol type="1">
+<li>图像预处理 <a href="#sec-patchify" class="quarto-xref">Section&nbsp;1.1</a> ：将输入图像划分为固定大小的块（例如 16x16 像素），并将这些块展平和线性嵌入。</li>
+<li>可学习的位置嵌入 <a href="#sec-learnable-position-embeddings" class="quarto-xref">Section&nbsp;1.2</a>: 为每个图像块添加可学习的位置嵌入，以保留空间信息，并且在开头添加一个分类标记（CLS token）用于最终的分类任务。</li>
+<li>Transformer 编码器 <a href="#sec-transformer-encoder" class="quarto-xref">Section&nbsp;1.3</a>: 使用多层 Transformer 编码器对图像块进行处理，捕捉全局上下文信息。</li>
+<li>分类头 <a href="#sec-classification-head" class="quarto-xref">Section&nbsp;1.4</a>: 将 Transformer 的输出通过一个简单的全连接层进行分类。</li>
+</ol>
+<section id="sec-patchify" class="level3 page-columns page-full" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="sec-patchify"><span class="header-section-number">1.1</span> Patchifying Image</h3>
+<p>想将Transformer应用图，首先第一个问题就是，如何将图像转换为适合 Transformer 处理的格式？和 Text 数据类型不同，<u>图像数据是二维的，而 Transformer 处理的是一维序列数据</u>。因此，我们需要一种方法将图像转换为一维序列。首先第一个直觉就是，直接将图像展平为一维序列 <span class="citation" data-cites="GenerativePretrainingPixelschen">(<a href="#ref-GenerativePretrainingPixelschen" role="doc-biblioref">Chen et al., n.d.</a>)</span>, 如 <a href="#fig-igpt" class="quarto-xref">Figure&nbsp;2</a> 所示。</p>
+<div id="fig-igpt" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-igpt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./02-vision-transformer.assets/iGPT.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-igpt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: An overview of iGPT (Image Source: <a href="https://cdn.openai.com/papers/Generative_Pretraining_from_Pixels_V2.pdf">Generative Pretraining from Pixels</a>)
+</figcaption>
+</figure>
+</div>
+<p>然而， 这种方法存在以下显而易见的问题：</p>
+<ol type="1">
+<li><strong>效率问题</strong>：直接展平图像会导致序列长度非常长，计算和存储开销巨大。在 <a href="https://yuyang.info/100-AI-Papers/posts/01-transformer.html#time-complexity-of-multi-head-attention">01-Transformer</a> 中，我们提到的随着序列长度的增加，Transformer 的计算复杂度会quadratic 增长，这使得处理高分辨率图像变得不切实际。</li>
+</ol>
+<blockquote class="blockquote">
+<p>…the reliance on low-level pixels as input makes training costly and hinders scaling.</p>
+</blockquote>
+<ol start="2" type="1">
+<li><strong>缺乏局部信息</strong>：直接展平图像会丢失局部结构信息，忽略了图像的二维空间结构（locality、平移不变性），导致模型难以捕捉图像中的空间关系。</li>
+</ol>
+<p>既然直接展开不行，那我们可不可以将几个像素组合成一个单元呢？类似于Convolutional Neural Networks（CNN）中的卷积核操作？这就是 Vision Transformer 中的<strong>Patchify</strong>策略。</p>
 <div class="page-columns page-full">
 <div id="fig-illustrate-patchify" class="quarto-layout-panel page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
@@ -435,17 +580,371 @@ Figure&nbsp;1: Vision Transformer Architecture (Image Source: <a href="https://j
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-illustrate-patchify-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Illustration of Patchifying Images with image size 256x256 and patch size 16x16
+Figure&nbsp;3: Illustration of Patchifying Images with image size 256x256 and patch size 16x16
 </figcaption>
 </figure>
 </div>
 </div>
-<p>Other content</p>
+<p>Vision Transformer 采用了<strong>Patchify</strong>的策略，将图像划分为固定大小的小块（patches），然后将这些小块展平并嵌入到一个一维序列中，如 <a href="#fig-illustrate-patchify" class="quarto-xref">Figure&nbsp;3</a> 所示。具体步骤如下：</p>
+<ol type="1">
+<li><strong>划分图像</strong>：将输入图像划分为大小为 <span class="math inline">\(P \times P\)</span> 的小块（patches），例如 16x16 像素。</li>
+<li><strong>展平小块</strong>：将每个小块展平为一个一维向量。对于每个 <span class="math inline">\(P \times P\)</span> 的小块，展平后的向量长度为 <span class="math inline">\(P^2 \times C\)</span>，其中 <span class="math inline">\(C\)</span> 是图像的通道数（例如 RGB 图像的 <span class="math inline">\(C=3\)</span>）。</li>
+<li><strong>线性嵌入</strong>：将展平的小块通过一个线性层（全连接层）嵌入到一个固定的维度 <span class="math inline">\(D\)</span>，通常 <span class="math inline">\(D\)</span> 是 Transformer 模型的隐藏维度。这样，每个小块就被转换为一个 <span class="math inline">\(D\)</span> 维的向量。</li>
+</ol>
+<p>具体来说，假设输入的图像 <span class="math inline">\(\mathrm{x} \in \mathbb{R}^{ C \times H \times W }\)</span>，经过 Patchify 处理后，得到的图像块为 <span class="math inline">\(\{ x_i \in \mathbb{R}^{C \times P \times P } \}_{i=1}^N\)</span>，其中 <span class="math inline">\(N = \frac{H \times W}{P^2}\)</span> 是图像块的数量。之前我们将得到的像素块展平为 <span class="math inline">\(x_i \in \mathbb{R}^{(C \cdot P \cdot P)}\)</span>，然后通过线性层 <span class="math inline">\(W \in \mathbb{R}^{(C \cdot P \cdot P) \times D}\)</span> 嵌入到 <span class="math inline">\(D\)</span> 维空间，得到 <span class="math inline">\(\{z_i \in \mathbb{R}^D\}_{i=1}^N\)</span>。</p>
+<div class="column-page">
+<p><span id="eq-patchify"><span class="math display">\[
+\boxed{
+\mathbf{x} \in \mathbb{R}^{C \times H \times W}
+\quad \xrightarrow{\text{Patchify}} \quad
+\{ x_i \in \mathbb{R}^{C \times P \times P} \}{i=1}^N
+\quad \xrightarrow{\text{Flatten}} \quad
+\{ x_i \in \mathbb{R}^{(C \cdot P \cdot P)} \}_{i=1}^N
+\quad \xrightarrow{\text{Linear } W \in \mathbb{R}^{(C \cdot P \cdot P) \times D}} \quad
+\{ z_i \in \mathbb{R}^{D} \}_{i=1}^N
+}
+\tag{1}\]</span></span></p>
+</div>
+<p>通过这种方式，Vision Transformer 能够将图像转换为适合 Transformer 处理的序列数据，同时保留了局部结构信息。Patchify 的大小 <span class="math inline">\(P\)</span> 是一个超参数，通常选择为 16 或 32，这取决于输入图像的分辨率和模型的设计。</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Patchify in Practice">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Patchify in Practice
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>在实际的实现中，我们通常直接使用一个Convolutional Layer来实现Patchify的操作。通过设置卷积核大小为 <span class="math inline">\(P\)</span>，步幅为 <span class="math inline">\(P\)</span>，并且不使用填充（padding），可以直接得到所需的图像块。卷集合的数量是 <span class="math inline">\(D\)</span>, 也就是我们的嵌入维度。这样可以有效地减少计算量，并且保持图像块之间的局部关系。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a>nn.Conv2d(</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    in_channels<span class="op">=</span>C, </span>
+<span id="cb1-3"><a href="#cb1-3"></a>    out_channels<span class="op">=</span>D, </span>
+<span id="cb1-4"><a href="#cb1-4"></a>    kernel_size<span class="op">=</span>P, </span>
+<span id="cb1-5"><a href="#cb1-5"></a>    stride<span class="op">=</span>P, </span>
+<span id="cb1-6"><a href="#cb1-6"></a>    padding<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="sec-learnable-position-embeddings" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="sec-learnable-position-embeddings"><span class="header-section-number">1.2</span> Learnable Position Embeddings</h3>
+<p>解决了如何将图像转换为适合 Transformer 处理的序列数据后，接下来需要考虑的是如何保留图像块之间的位置信息。由于 Transformer 本身不具备处理位置信息的能力，因此需要引入位置嵌入（position embeddings）。 在论文中，使用<strong>可学习的位置嵌入</strong>：为每个图像块添加一个可学习的位置嵌入向量。</p>
+<blockquote class="blockquote">
+<p>We use s<strong>tandard learnable 1D position embeddings</strong>, since we have not observed significant performance gains from using more advanced 2D-aware position embeddings</p>
+</blockquote>
+<p>与Transformer一样，位置的嵌入是一个<u>与输入序列长度相同</u>的向量，每个位置对应一个可学习的参数。具体来说，对于每个图像块 <span class="math inline">\(z_i\)</span>，我们添加一个位置嵌入 <span class="math inline">\(p_i\)</span>，使得最终的输入序列为： <span class="math display">\[
+\mathbf{z} = \{ z_i + p_i \}_{i=1}^N，  \quad \text{where}\ p_i \in \mathbb{R}^D
+\]</span></p>
+<section id="sec-cls-token" class="level4" data-number="1.2.1">
+<h4 data-number="1.2.1" class="anchored" data-anchor-id="sec-cls-token"><span class="header-section-number">1.2.1</span> CLS Token</h4>
+<p>此外，为了进行图像分类，Vision Transformer 在输入序列的开头添加了一个特殊的分类标记（CLS token）<span class="citation" data-cites="BERTPretrainingDeep2019devlin">(<a href="#ref-BERTPretrainingDeep2019devlin" role="doc-biblioref">Devlin et al. 2019</a>)</span>，这个标记用于最终的分类任务。这个 CLS token 也是一个可学习的向量，通常初始化为零向量。</p>
+<div class="callout callout-style-default callout-note callout-titled" title="CLS Token">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+CLS Token
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>CLS token 是一个特殊的标记，用于表示整个输入序列的全局信息。在 Vision Transformer 中，CLS token 的位置嵌入也是可学习的。它在 Transformer 编码器处理完所有图像块后，作为分类头 (<a href="#sec-classification-head" class="quarto-xref">Section&nbsp;1.4</a>) 的输入。</p>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-transformer-encoder" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="sec-transformer-encoder"><span class="header-section-number">1.3</span> Transformer Encoder</h3>
+<p>在处理完图像块和位置嵌入后，接下来就是将这些信息输入到 Transformer 编码器中。Vision Transformer 使用了标准的 Transformer 编码器结构，包括多头自注意力机制（Multi-Head Self-Attention）和前馈神经网络（Feed-Forward Neural Network），如 <a href="#fig-vision-transformer-encoder" class="quarto-xref">Figure&nbsp;4</a> 所示.</p>
+<div id="fig-vision-transformer-encoder" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-vision-transformer-encoder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./02-vision-transformer.assets/encoder.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vision-transformer-encoder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Vision Transformer Encoder
+</figcaption>
+</figure>
+</div>
+<p>在这里就不再详细介绍 Transformer 编码器的工作原理了，感兴趣的读者可以参考之前的<a href="https://yuyang.info/100-AI-Papers/posts/01-transformer.html">01 Transformer</a>。 不过值得一提的是，normalization的位置，在 Vision Transformer 中，Layer Normalization 被放置在每个子层的输入端（Pre-Norm) ，而不是输出端， 见 <a href="#fig-pre-norm" class="quarto-xref">Figure&nbsp;5</a> 。这与原始的 Transformer 设计有所不同.</p>
+<div id="fig-pre-norm" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pre-norm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./02-vision-transformer.assets/pre-norm.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pre-norm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Post-Norm vs Pre-Norm
+</figcaption>
+</figure>
+</div>
+<p>Pre-Norm 的好处是可以更好地稳定训练过程，尤其是在深层网络中。它通过在每个子层之前进行归一化，确保输入的分布在每个子层中保持一致，从而减少梯度消失或爆炸的风险, 并且有助于更好的梯度的传播，并且消除了训练中对warm-up的需求 <span class="citation" data-cites="LayerNormalizationTransformer2020xiong">(<a href="#ref-LayerNormalizationTransformer2020xiong" role="doc-biblioref">Xiong et al. 2020</a>)</span>。</p>
+</section>
+<section id="sec-classification-head" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="sec-classification-head"><span class="header-section-number">1.4</span> Classification Head</h3>
+<p>ViT 的最后一步是分类头，它将 Transformer 编码器的输出用于图像分类任务。具体来说，使用 CLS token 的输出作为图像的全局表示，然后通过一个简单的全连接层进行分类。</p>
+<p><span id="eq-classification-head"><span class="math display">\[
+\mathbf{y} = \text{softmax}(W_{\text{cls}} \cdot z_{\text{cls}} + b_{\text{cls}})
+\tag{2}\]</span></span></p>
+<p>其中 <span class="math inline">\(z_{\text{cls}}\)</span> 是 CLS token 的输出，<span class="math inline">\(W_{\text{cls}} \in \mathbb{R}^{D \times C}\)</span> 和 <span class="math inline">\(b_{\text{cls}} \in \mathbb{R}^{C}\)</span> 是分类头的权重和偏置。</p>
+</section>
+<section id="vit-summary" class="level3" data-number="1.5">
+<h3 data-number="1.5" class="anchored" data-anchor-id="vit-summary"><span class="header-section-number">1.5</span> ViT Summary</h3>
+<p>总的来说，再了解了什么是Transformer之后，再了解Vision Transformer就相对简单了。Vision Transformer 的核心思想是将图像划分为小块（patches），然后将这些小块视为序列数据，类似于处理文本数据。通过 Patchify、可学习的位置嵌入、Transformer 编码器和分类头等步骤，ViT 能够有效地处理图像分类任务。 接下来，我们将介绍如何在 PyTorch 中实现 Vision Transformer。</p>
+</section>
+</section>
+<section id="sec-pytorch-implementation" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="sec-pytorch-implementation"><span class="header-section-number">2</span> PyTorch Implementation</h2>
+<p>在 PyTorch 中实现 Vision Transformer 的关键步骤包括 Patchify、位置嵌入、Transformer 编码器和分类头。</p>
+<section id="patchify" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="patchify"><span class="header-section-number">2.1</span> Patchify</h3>
+<p>首先，我们需要实现 Patchify 的操作，将输入图像划分为小块并展平。可以使用一个卷积层来实现这一点，如 <a href="#sec-patchify" class="quarto-xref">Section&nbsp;1.1</a> 中所述。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">class</span> PatchEmbedding(nn.Module):</span>
+<span id="cb2-2"><a href="#cb2-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, config: ModelConfig):</span>
+<span id="cb2-3"><a href="#cb2-3"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a>        <span class="va">self</span>.conv <span class="op">=</span> nn.Conv2d(</span>
+<span id="cb2-6"><a href="#cb2-6"></a>            in_channels<span class="op">=</span>config.num_channels,</span>
+<span id="cb2-7"><a href="#cb2-7"></a>            out_channels<span class="op">=</span>config.hidden_dim,</span>
+<span id="cb2-8"><a href="#cb2-8"></a>            kernel_size<span class="op">=</span>config.patch_size,</span>
+<span id="cb2-9"><a href="#cb2-9"></a>            stride<span class="op">=</span>config.patch_size,</span>
+<span id="cb2-10"><a href="#cb2-10"></a>            padding<span class="op">=</span><span class="st">"valid"</span> <span class="cf">if</span> config.patch_size <span class="op">==</span> <span class="dv">16</span> <span class="cf">else</span> <span class="st">"same"</span>,</span>
+<span id="cb2-11"><a href="#cb2-11"></a>        )</span>
+<span id="cb2-12"><a href="#cb2-12"></a></span>
+<span id="cb2-13"><a href="#cb2-13"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, imgs: torch.Tensor) <span class="op">-&gt;</span> torch.Tensor:</span>
+<span id="cb2-14"><a href="#cb2-14"></a>        <span class="co">"""</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="co">        imgs: (batch_size, num_channels, height, width)</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="co">        Returns: (batch_size,  num_patches_height, num_patches_width, hidden_dim)</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="co">        """</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a>        <span class="co"># (B, C, H, W) -&gt; (B, hidden_dim, H', W')</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a>        x <span class="op">=</span> <span class="va">self</span>.conv(imgs)</span>
+<span id="cb2-20"><a href="#cb2-20"></a></span>
+<span id="cb2-21"><a href="#cb2-21"></a>        <span class="co"># (B, hidden_dim, H', W') -&gt; (B, hidden_dim, H' * W')</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a>        x <span class="op">=</span> x.flatten(<span class="dv">2</span>)</span>
+<span id="cb2-23"><a href="#cb2-23"></a></span>
+<span id="cb2-24"><a href="#cb2-24"></a>        <span class="co"># (B, hidden_dim, H' * W') -&gt; (B, H' * W', hidden_dim)</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a>        x <span class="op">=</span> x.transpose(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb2-26"><a href="#cb2-26"></a>        <span class="cf">return</span> x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="learnable-position-embeddings" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="learnable-position-embeddings"><span class="header-section-number">2.2</span> Learnable Position Embeddings</h3>
+<p>接下来，我们需要实现可学习的位置嵌入。可以直接设置可学习的参数，并在前向传播中添加到图像块的嵌入上。主要注意的是，除了patches的嵌入外，我们还需要添加一个可学习的 CLS token，所有总共是 <span class="math inline">\((H \cdot W / P^2 + 1)\)</span> 个位置嵌入。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">class</span> PositionalEncoding(nn.Module):</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, config: ModelConfig):</span>
+<span id="cb3-3"><a href="#cb3-3"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb3-4"><a href="#cb3-4"></a></span>
+<span id="cb3-5"><a href="#cb3-5"></a>        <span class="va">self</span>.positional_embedding <span class="op">=</span> nn.Parameter(</span>
+<span id="cb3-6"><a href="#cb3-6"></a>            torch.randn(</span>
+<span id="cb3-7"><a href="#cb3-7"></a>                <span class="dv">1</span>,</span>
+<span id="cb3-8"><a href="#cb3-8"></a>                (config.image_size <span class="op">//</span> config.patch_size) <span class="op">**</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">1</span>,</span>
+<span id="cb3-9"><a href="#cb3-9"></a>                config.hidden_dim,</span>
+<span id="cb3-10"><a href="#cb3-10"></a>            )</span>
+<span id="cb3-11"><a href="#cb3-11"></a>        )</span>
+<span id="cb3-12"><a href="#cb3-12"></a></span>
+<span id="cb3-13"><a href="#cb3-13"></a>        <span class="va">self</span>.cls_token <span class="op">=</span> nn.Parameter(torch.randn(<span class="dv">1</span>, <span class="dv">1</span>, config.hidden_dim))</span>
+<span id="cb3-14"><a href="#cb3-14"></a></span>
+<span id="cb3-15"><a href="#cb3-15"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x: torch.Tensor):</span>
+<span id="cb3-16"><a href="#cb3-16"></a>        <span class="co">"""</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="co">        x: (batch_size, num_patches, hidden_dim)</span></span>
+<span id="cb3-18"><a href="#cb3-18"></a><span class="co">        Returns: (batch_size, num_patches, hidden_dim)</span></span>
+<span id="cb3-19"><a href="#cb3-19"></a><span class="co">        """</span></span>
+<span id="cb3-20"><a href="#cb3-20"></a>        <span class="co"># Add positional encoding to the input tensor</span></span>
+<span id="cb3-21"><a href="#cb3-21"></a>        batch_size <span class="op">=</span> x.size(<span class="dv">0</span>)</span>
+<span id="cb3-22"><a href="#cb3-22"></a></span>
+<span id="cb3-23"><a href="#cb3-23"></a>        pos_embedding <span class="op">=</span> <span class="va">self</span>.positional_embedding.expand(batch_size, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb3-24"><a href="#cb3-24"></a>        cls_token <span class="op">=</span> <span class="va">self</span>.cls_token.expand(batch_size, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb3-25"><a href="#cb3-25"></a></span>
+<span id="cb3-26"><a href="#cb3-26"></a>        x <span class="op">=</span> torch.cat((cls_token, x), dim<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb3-27"><a href="#cb3-27"></a>        <span class="cf">return</span> x <span class="op">+</span> pos_embedding</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>在这里，我们添加了一个可学习的 CLS token，并将其与图像块的嵌入拼接在一起。</p>
+</section>
+<section id="transformer-encoder" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="transformer-encoder"><span class="header-section-number">2.3</span> Transformer Encoder</h3>
+<p>接下来是Transformer 编码器的实现。分成 Attention和 FeedForward 两个部分。注意这里的 Layer Normalization 是 Pre-Norm 的形式。想较于原始的Encoder，ViT的实现，比较简单，我们不需要实现 Masked Attention，因为 Vision Transformer 只处理图像块的全局上下文。 #### Multi-Head Attention</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">def</span> scale_dot_product(query, key, value):</span>
+<span id="cb4-2"><a href="#cb4-2"></a>    <span class="co">"""</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="co">    Scaled Dot-Product Attention</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co">    Args:</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co">        query: Tensor of shape (batch_size, num_heads, seq_length, d_k)</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="co">        key: Tensor of shape (batch_size, num_heads, seq_length, d_k)</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co">        value: Tensor of shape (batch_size, num_heads, seq_length, d_v)</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="co">    Returns:</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="co">        output: Tensor of shape (batch_size, num_heads, seq_length, d_v)</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="co">    """</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a></span>
+<span id="cb4-12"><a href="#cb4-12"></a>    d_k <span class="op">=</span> query.size(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb4-13"><a href="#cb4-13"></a>    scores <span class="op">=</span> torch.matmul(query, key.transpose(<span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>)) <span class="op">/</span> math.sqrt(d_k)</span>
+<span id="cb4-14"><a href="#cb4-14"></a>    attn <span class="op">=</span> F.softmax(scores, dim<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb4-15"><a href="#cb4-15"></a>    output <span class="op">=</span> torch.matmul(attn, value)</span>
+<span id="cb4-16"><a href="#cb4-16"></a>    <span class="cf">return</span> output</span>
+<span id="cb4-17"><a href="#cb4-17"></a></span>
+<span id="cb4-18"><a href="#cb4-18"></a><span class="kw">class</span> MHA(nn.Module):</span>
+<span id="cb4-19"><a href="#cb4-19"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, config: ModelConfig):</span>
+<span id="cb4-20"><a href="#cb4-20"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb4-21"><a href="#cb4-21"></a></span>
+<span id="cb4-22"><a href="#cb4-22"></a>        <span class="va">self</span>.num_heads <span class="op">=</span> config.num_heads</span>
+<span id="cb4-23"><a href="#cb4-23"></a>        <span class="va">self</span>.hidden_dim <span class="op">=</span> config.hidden_dim</span>
+<span id="cb4-24"><a href="#cb4-24"></a>        <span class="va">self</span>.head_dim <span class="op">=</span> config.hidden_dim <span class="op">//</span> config.num_heads</span>
+<span id="cb4-25"><a href="#cb4-25"></a></span>
+<span id="cb4-26"><a href="#cb4-26"></a>        <span class="va">self</span>.query_proj <span class="op">=</span> nn.Linear(config.hidden_dim, config.hidden_dim)</span>
+<span id="cb4-27"><a href="#cb4-27"></a>        <span class="va">self</span>.key_proj <span class="op">=</span> nn.Linear(config.hidden_dim, config.hidden_dim)</span>
+<span id="cb4-28"><a href="#cb4-28"></a>        <span class="va">self</span>.value_proj <span class="op">=</span> nn.Linear(config.hidden_dim, config.hidden_dim)</span>
+<span id="cb4-29"><a href="#cb4-29"></a>        <span class="va">self</span>.out_proj <span class="op">=</span> nn.Linear(config.hidden_dim, config.hidden_dim)</span>
+<span id="cb4-30"><a href="#cb4-30"></a></span>
+<span id="cb4-31"><a href="#cb4-31"></a>        <span class="va">self</span>.dropout <span class="op">=</span> nn.Dropout(config.attention_dropout_rate)</span>
+<span id="cb4-32"><a href="#cb4-32"></a></span>
+<span id="cb4-33"><a href="#cb4-33"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x: torch.Tensor):</span>
+<span id="cb4-34"><a href="#cb4-34"></a>        <span class="co">"""</span></span>
+<span id="cb4-35"><a href="#cb4-35"></a><span class="co">        x: (batch_size, num_patches, hidden_dim)</span></span>
+<span id="cb4-36"><a href="#cb4-36"></a><span class="co">        Returns: (batch_size, num_patches, hidden_dim)</span></span>
+<span id="cb4-37"><a href="#cb4-37"></a><span class="co">        """</span></span>
+<span id="cb4-38"><a href="#cb4-38"></a>        batch_size <span class="op">=</span> x.size(<span class="dv">0</span>)</span>
+<span id="cb4-39"><a href="#cb4-39"></a></span>
+<span id="cb4-40"><a href="#cb4-40"></a>        <span class="co"># Project inputs to query, key, value</span></span>
+<span id="cb4-41"><a href="#cb4-41"></a>        query <span class="op">=</span> (</span>
+<span id="cb4-42"><a href="#cb4-42"></a>            <span class="va">self</span>.query_proj(x)</span>
+<span id="cb4-43"><a href="#cb4-43"></a>            .view(batch_size, <span class="op">-</span><span class="dv">1</span>, <span class="va">self</span>.num_heads, <span class="va">self</span>.head_dim)</span>
+<span id="cb4-44"><a href="#cb4-44"></a>            .transpose(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb4-45"><a href="#cb4-45"></a>        )</span>
+<span id="cb4-46"><a href="#cb4-46"></a>        key <span class="op">=</span> (</span>
+<span id="cb4-47"><a href="#cb4-47"></a>            <span class="va">self</span>.key_proj(x)</span>
+<span id="cb4-48"><a href="#cb4-48"></a>            .view(batch_size, <span class="op">-</span><span class="dv">1</span>, <span class="va">self</span>.num_heads, <span class="va">self</span>.head_dim)</span>
+<span id="cb4-49"><a href="#cb4-49"></a>            .transpose(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb4-50"><a href="#cb4-50"></a>        )</span>
+<span id="cb4-51"><a href="#cb4-51"></a>        value <span class="op">=</span> (</span>
+<span id="cb4-52"><a href="#cb4-52"></a>            <span class="va">self</span>.value_proj(x)</span>
+<span id="cb4-53"><a href="#cb4-53"></a>            .view(batch_size, <span class="op">-</span><span class="dv">1</span>, <span class="va">self</span>.num_heads, <span class="va">self</span>.head_dim)</span>
+<span id="cb4-54"><a href="#cb4-54"></a>            .transpose(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb4-55"><a href="#cb4-55"></a>        )</span>
+<span id="cb4-56"><a href="#cb4-56"></a></span>
+<span id="cb4-57"><a href="#cb4-57"></a>        <span class="co"># Apply scaled dot-product attention</span></span>
+<span id="cb4-58"><a href="#cb4-58"></a>        attn_output <span class="op">=</span> scale_dot_product(query, key, value)</span>
+<span id="cb4-59"><a href="#cb4-59"></a></span>
+<span id="cb4-60"><a href="#cb4-60"></a>        <span class="co"># Concatenate heads and project back to hidden dimension</span></span>
+<span id="cb4-61"><a href="#cb4-61"></a>        attn_output <span class="op">=</span> (</span>
+<span id="cb4-62"><a href="#cb4-62"></a>            attn_output.transpose(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb4-63"><a href="#cb4-63"></a>            .contiguous()</span>
+<span id="cb4-64"><a href="#cb4-64"></a>            .view(batch_size, <span class="op">-</span><span class="dv">1</span>, <span class="va">self</span>.hidden_dim)</span>
+<span id="cb4-65"><a href="#cb4-65"></a>        )</span>
+<span id="cb4-66"><a href="#cb4-66"></a>        output <span class="op">=</span> <span class="va">self</span>.out_proj(attn_output)</span>
+<span id="cb4-67"><a href="#cb4-67"></a></span>
+<span id="cb4-68"><a href="#cb4-68"></a>        output <span class="op">=</span> <span class="va">self</span>.dropout(output)</span>
+<span id="cb4-69"><a href="#cb4-69"></a></span>
+<span id="cb4-70"><a href="#cb4-70"></a>        <span class="cf">return</span> output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="feed-forward-network" class="level4" data-number="2.3.1">
+<h4 data-number="2.3.1" class="anchored" data-anchor-id="feed-forward-network"><span class="header-section-number">2.3.1</span> Feed-Forward Network</h4>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">class</span> FFN(nn.Module):</span>
+<span id="cb5-2"><a href="#cb5-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, config: ModelConfig):</span>
+<span id="cb5-3"><a href="#cb5-3"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb5-4"><a href="#cb5-4"></a>        <span class="va">self</span>.fc1 <span class="op">=</span> nn.Linear(config.hidden_dim, config.mlp_dim)</span>
+<span id="cb5-5"><a href="#cb5-5"></a>        <span class="va">self</span>.fc2 <span class="op">=</span> nn.Linear(config.mlp_dim, config.hidden_dim)</span>
+<span id="cb5-6"><a href="#cb5-6"></a>        <span class="va">self</span>.dropout <span class="op">=</span> nn.Dropout(config.dropout_rate)</span>
+<span id="cb5-7"><a href="#cb5-7"></a></span>
+<span id="cb5-8"><a href="#cb5-8"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x: torch.Tensor):</span>
+<span id="cb5-9"><a href="#cb5-9"></a>        <span class="co">"""</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="co">        x: (batch_size, num_patches, hidden_dim)</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="co">        Returns: (batch_size, num_patches, hidden_dim)</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="co">        """</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a>        x <span class="op">=</span> F.relu(<span class="va">self</span>.fc1(x))</span>
+<span id="cb5-14"><a href="#cb5-14"></a>        x <span class="op">=</span> <span class="va">self</span>.dropout(x)</span>
+<span id="cb5-15"><a href="#cb5-15"></a>        x <span class="op">=</span> <span class="va">self</span>.fc2(x)</span>
+<span id="cb5-16"><a href="#cb5-16"></a>        <span class="cf">return</span> x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="pre-normalization" class="level4" data-number="2.3.2">
+<h4 data-number="2.3.2" class="anchored" data-anchor-id="pre-normalization"><span class="header-section-number">2.3.2</span> Pre-Normalization</h4>
+<p>在 Vision Transformer 中，Layer Normalization 被放置在每个子层的输入端（Pre-Norm) ，而不是输出端， 见 <a href="#fig-pre-norm" class="quarto-xref">Figure&nbsp;5</a> 。</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">class</span> EncoderBlock(nn.Module):</span>
+<span id="cb6-2"><a href="#cb6-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, config: ModelConfig):</span>
+<span id="cb6-3"><a href="#cb6-3"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb6-4"><a href="#cb6-4"></a>        <span class="va">self</span>.mha <span class="op">=</span> MHA(config)</span>
+<span id="cb6-5"><a href="#cb6-5"></a>        <span class="va">self</span>.ffn <span class="op">=</span> FFN(config)</span>
+<span id="cb6-6"><a href="#cb6-6"></a>        <span class="va">self</span>.norm1 <span class="op">=</span> LayerNorm(config.hidden_dim)</span>
+<span id="cb6-7"><a href="#cb6-7"></a>        <span class="va">self</span>.norm2 <span class="op">=</span> LayerNorm(config.hidden_dim)</span>
+<span id="cb6-8"><a href="#cb6-8"></a></span>
+<span id="cb6-9"><a href="#cb6-9"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x: torch.Tensor):</span>
+<span id="cb6-10"><a href="#cb6-10"></a>        <span class="co">"""</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="co">        x: (batch_size, num_patches, hidden_dim)</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="co">        Returns: (batch_size, num_patches, hidden_dim)</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="co">        """</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a>        <span class="co"># Multi-head attention</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a>        redisual <span class="op">=</span> x </span>
+<span id="cb6-16"><a href="#cb6-16"></a>        x <span class="op">=</span> <span class="va">self</span>.norm1(x)</span>
+<span id="cb6-17"><a href="#cb6-17"></a>        x <span class="op">=</span> redisual <span class="op">+</span> <span class="va">self</span>.mha(x)</span>
+<span id="cb6-18"><a href="#cb6-18"></a></span>
+<span id="cb6-19"><a href="#cb6-19"></a>        <span class="co"># Feed-forward network</span></span>
+<span id="cb6-20"><a href="#cb6-20"></a>        redisual <span class="op">=</span> x </span>
+<span id="cb6-21"><a href="#cb6-21"></a>        x <span class="op">=</span> <span class="va">self</span>.norm2(x)</span>
+<span id="cb6-22"><a href="#cb6-22"></a>        x <span class="op">=</span> x <span class="op">+</span> <span class="va">self</span>.ffn(x)</span>
+<span id="cb6-23"><a href="#cb6-23"></a></span>
+<span id="cb6-24"><a href="#cb6-24"></a>        <span class="cf">return</span> x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="classification-head" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="classification-head"><span class="header-section-number">2.4</span> Classification Head</h3>
+<p>之后是分类头的实现。我们使用 CLS token 的输出作为图像的全局表示，然后通过一个简单的全连接层进行分类。</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">class</span> MLPHead(nn.Module):</span>
+<span id="cb7-2"><a href="#cb7-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, config: ModelConfig):</span>
+<span id="cb7-3"><a href="#cb7-3"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb7-4"><a href="#cb7-4"></a>        <span class="va">self</span>.fc1 <span class="op">=</span> nn.Linear(config.hidden_dim, config.mlp_dim)</span>
+<span id="cb7-5"><a href="#cb7-5"></a>        <span class="va">self</span>.fc2 <span class="op">=</span> nn.Linear(config.mlp_dim, config.num_classes)</span>
+<span id="cb7-6"><a href="#cb7-6"></a>        <span class="va">self</span>.dropout <span class="op">=</span> nn.Dropout(config.dropout_rate)</span>
+<span id="cb7-7"><a href="#cb7-7"></a></span>
+<span id="cb7-8"><a href="#cb7-8"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x: torch.Tensor):</span>
+<span id="cb7-9"><a href="#cb7-9"></a>        <span class="co">"""</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="co">        x: (batch_size, num_patches, hidden_dim)</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="co">        Returns: (batch_size, num_classes)</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="co">        """</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a>        <span class="co"># Use the CLS token for classification</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a>        cls_token <span class="op">=</span> x[:, <span class="dv">0</span>, :]</span>
+<span id="cb7-15"><a href="#cb7-15"></a>        x <span class="op">=</span> F.relu(<span class="va">self</span>.fc1(cls_token))</span>
+<span id="cb7-16"><a href="#cb7-16"></a>        x <span class="op">=</span> <span class="va">self</span>.dropout(x)</span>
+<span id="cb7-17"><a href="#cb7-17"></a>        x <span class="op">=</span> <span class="va">self</span>.fc2(x)</span>
+<span id="cb7-18"><a href="#cb7-18"></a>        </span>
+<span id="cb7-19"><a href="#cb7-19"></a>        <span class="cf">return</span> x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="vit-model" class="level3" data-number="2.5">
+<h3 data-number="2.5" class="anchored" data-anchor-id="vit-model"><span class="header-section-number">2.5</span> ViT Model</h3>
+<p>最后，我们将所有组件组合在一起，形成完整的 Vision Transformer 模型。</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">class</span> ViT(nn.Module):</span>
+<span id="cb8-2"><a href="#cb8-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, config: ModelConfig):</span>
+<span id="cb8-3"><a href="#cb8-3"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb8-4"><a href="#cb8-4"></a>        <span class="va">self</span>.patch_embedding <span class="op">=</span> PatchEmbedding(config)</span>
+<span id="cb8-5"><a href="#cb8-5"></a>        <span class="va">self</span>.positional_encoding <span class="op">=</span> PositionalEncoding(config)</span>
+<span id="cb8-6"><a href="#cb8-6"></a>        <span class="va">self</span>.encoder <span class="op">=</span> Backbone(config)</span>
+<span id="cb8-7"><a href="#cb8-7"></a>        <span class="va">self</span>.mlp_head <span class="op">=</span> MLPHead(config)</span>
+<span id="cb8-8"><a href="#cb8-8"></a></span>
+<span id="cb8-9"><a href="#cb8-9"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, imgs: torch.Tensor) <span class="op">-&gt;</span> torch.Tensor:</span>
+<span id="cb8-10"><a href="#cb8-10"></a>        <span class="co">"""</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a><span class="co">        imgs: (batch_size, num_channels, height, width)</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a><span class="co">        Returns: (batch_size, num_classes)</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a><span class="co">        """</span></span>
+<span id="cb8-14"><a href="#cb8-14"></a>        x <span class="op">=</span> <span class="va">self</span>.patch_embedding(imgs)</span>
+<span id="cb8-15"><a href="#cb8-15"></a>        x <span class="op">=</span> <span class="va">self</span>.positional_encoding(x)</span>
+<span id="cb8-16"><a href="#cb8-16"></a>        x <span class="op">=</span> <span class="va">self</span>.encoder(x)</span>
+<span id="cb8-17"><a href="#cb8-17"></a>        x <span class="op">=</span> <span class="va">self</span>.mlp_head(x)</span>
+<span id="cb8-18"><a href="#cb8-18"></a></span>
+<span id="cb8-19"><a href="#cb8-19"></a>        <span class="cf">return</span> x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="训练集" class="level3" data-number="2.6">
+<h3 data-number="2.6" class="anchored" data-anchor-id="训练集"><span class="header-section-number">2.6</span> 训练集</h3>
+<p>在这个演示中，我们将使用<a href="https://www.kaggle.com/datasets/puneet6060/intel-image-classification">Intel Image Classification</a> 数据集进行训练。</p>
+
 
 
 </section>
+</section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-GenerativePretrainingPixelschen" class="csl-entry" role="listitem">
+Chen, Mark, Alec Radford, Rewon Child, Jeff Wu, Heewoo Jun, Prafulla Dhariwal, David Luan, and Ilya Sutskever. n.d. <span>“Generative <span>Pretraining</span> from <span>Pixels</span>.”</span>
+</div>
+<div id="ref-BERTPretrainingDeep2019devlin" class="csl-entry" role="listitem">
+Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: <span class="nocase">Pre-training</span> of <span>Deep Bidirectional Transformers</span> for <span>Language Understanding</span>.”</span> May 24, 2019. <a href="https://doi.org/10.48550/arXiv.1810.04805">https://doi.org/10.48550/arXiv.1810.04805</a>.
+</div>
+<div id="ref-LayerNormalizationTransformer2020xiong" class="csl-entry" role="listitem">
+Xiong, Ruibin, Yunchang Yang, Di He, Kai Zheng, Shuxin Zheng, Chen Xing, Huishuai Zhang, Yanyan Lan, Liwei Wang, and Tie-Yan Liu. 2020. <span>“On <span>Layer Normalization</span> in the <span>Transformer Architecture</span>.”</span> June 29, 2020. <a href="https://doi.org/10.48550/arXiv.2002.04745">https://doi.org/10.48550/arXiv.2002.04745</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
